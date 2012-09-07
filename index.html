@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+	<meta charset="utf-8" />
+	<META http-equiv="X-UA-Compatible" content="IE=9" >
+	<link rel="stylesheet" type="text/css" href="resources/css/index.css" >
+	<script type="text/javascript" src="resources/js/jquery-min.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.poshytip.min.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.ui.datepicker.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.ui.datepicker-zh-CN.js"></script>
+	<script type="text/javascript" src="resources/js/index.js"></script>
+	
+	
+	<link rel="stylesheet" href="resources/css/tip-green/tip-green.css" type="text/css" />
+	<link rel="stylesheet" href="resources/css/le-frog/jquery.ui.all.css" type="text/css" />
+	<title>脉络</title>
+	</head>
+	<body>
+		<div id="content">
+			<img class="title" src="/resources/img/title_mrole.png"  />
+			<div id="titleText" >脉络 ,Easy,Amazing,Convenient.</div>
+			<div class="bodyBox">
+				<div id="bodyBoxCtn" style="display: none">
+				<input type="text" id="searchBox" >
+				<input type="submit" id="searchBtn" value="搜索" class="indextext" >
+				
+				<p class="indextext" id="regBtn"  >注册账号</p>
+				<p class="indextext" id="loginBtn">马上登陆</p>
+				</div>
+			</div>
+			<div class="animateBox">
+				<ul class="slideBox regBox">
+				<form action="register" method="post" id="regform" >
+					<li>
+					<div class="data_input" style="margin-top:25px"><input type="text" name="username" class="inputText" id="reg_username" value="请输入学号" /></div>
+					<div class="data_input"><input type="text" name="realname" class="inputText" id="reg_realname" value="请输入姓名" /></div>
+					<div class="data_input" style="margin-top:30px"><div id="reg_next_btn" class="nextBtn" ><img width="52" height="44" src="resources/img/right_arrow.png" /></div></div>
+					</li>
+					<li>
+					<div class="data_input"  style="margin-top:25px"  ><div class="prevSpace prevBtn" ><img width="52" height="44" src="resources/img/left_arrow.png"  /></div><input type="text" name="password" class="inputText detailInfo" id="reg_password" value="请输入密码" /><div class="clear" ></div></div>
+					<div class="data_input"><div class="prevSpace">&nbsp;</div><input type="text" name="job" class="inputText detailInfo" id="reg_job" title="请输入你的在校职务用,分割（如班长,XX社团社长）" value="请输入在校职务" /><div class="clear"></div></div>
+					<div class="data_input"><div class="prevSpace">&nbsp;</div><input type="text" name="brithday" class="inputText detailInfo" id="reg_birthday" title="请输入你的出生年/月/日" value="请选择出生年月日" /><div class="clear" ></div></div>
+					<div class="data_input"><div class="prevSpace">&nbsp;</div><input type="text" name="email" class="inputText detailInfo" id="reg_email" title="请输入你的Email地址" value="E-mail" /><div class="clear" ></div></div>
+					<div class="data_input" ><div class="prevSpace nextBtn"><img width="52" height="44" src="resources/img/right_arrow.png"  /></div><input type="text" name="captcha" class="inputText detailInfo" id="reg_captcha" value="验证码" /> <img alt="test" style="float:left" width="76" height="48" /><div class="clear" ></div></div>
+					</li>
+				</form>
+				</ul>
+				<ul class="slideBox loginBox">
+					<li>
+					<div>
+						<form action="login" method="post" id="loginform" >
+							<div class="data_input"><input type="text" name="username" class="inputText" id="login_username" value="请输入学号" /></div>
+							<div class="data_input"><input type="text" name="password" class="inputText" id="login_password" value="请输入密码"  /></div>
+							<div class="data_input" style="display:inline"><input type="button" value="马上登陆" class="loginBtn" id="login_btn" /></div>
+						</form>
+					</div>
+					</li>
+				</ul>
+				
+			</div>
+				
+		</div>
+	</body>
+</html> 

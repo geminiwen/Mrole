@@ -1,0 +1,637 @@
+@charset "utf-8";
+/* CSS Document */
+html
+{
+	text-align:center;
+	font-family: "Microsoft YaHei", "New York", serif;
+}
+
+body
+{
+	width:1024px;
+	margin: 0 auto;
+	overflow-y: scroll;
+}
+
+input
+{
+	outline:none;
+	margin:0;
+	padding:0;
+}
+
+.clear
+{
+	clear:both;
+}
+
+.hidden {
+	display:none;
+}
+
+.head
+{
+	background-color:#EFF1F3;
+}
+
+.nav
+{
+	width:auto;
+	height: 99px;
+	float:left;
+}
+
+.logo
+{
+	width: 80px;
+	height: 80px;
+	background-image:url('../img/logo.png');
+	margin-bottom: 19px;
+	float:left;
+}
+
+
+/* Settings Music Player */
+
+.media_player
+{
+	float:left;
+}
+
+.media_logo
+{
+	width: 43px;
+	height: 41px;
+	background-image:url('../img/media/logo.jpg');
+	float:left;
+}
+
+.media_title
+{
+	width: 152px;
+	height: 41px;
+	white-space: nowrap;
+	background-color: #ACDA22;
+	line-height: 41px;
+	color: #fff;
+	font-family: "Microsoft YaHei", "New York", serif;
+	font-size: 24px;
+	float:left;
+}
+
+.media_playpause
+{
+	border-left: 1px solid #999;
+	float:left;
+	width: 38px;
+	height: 41px;
+	background-color: #ACDA22;
+	padding:  0px 6px;
+	overflow:hidden;
+}
+
+.media_playpause p
+{
+	display: none;
+	width: 37px;
+	height: 41px;
+	margin:0;
+	cursor: pointer;
+}
+
+.media_playpause .playZ
+{
+	background: url('../img/media/play_paused.png') 0 0 no-repeat;
+	display: block;
+}
+.media_playpause .pauseZ
+{
+	background: url('../img/media/play_paused.png') 0px -42px no-repeat;
+}
+.playingZ .playZ, .playingZ .loadingZ, .playingZ .errorZ 
+{ 
+	display: none;
+}
+
+.loadingZ .playZ, .loadingZ .pauseZ, .loadingZ .errorZ 
+{ display: none; }
+
+
+.playingZ .pauseZ
+{
+	display: block;
+}
+
+.loadingZ .loadingZ { display: block; }
+
+/* Settings Music Player */
+
+.navigator
+{
+	float:left;
+}
+
+.navigator ul
+{
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-color:#ACDA22;
+	height: 41px;
+}
+
+.navigator ul li
+{
+	float:left;
+	width:64px;
+	line-height: 41px;
+	list-style:none;
+	font-family: "Microsoft YaHei", "New York", serif;
+	font-size: 24px;
+	margin: 0 10px;
+	color : #fff;
+	cursor: pointer;
+}
+
+.nav_off
+{
+	background-color:#ACDA22;
+}
+
+.nav_on
+{
+	background-color:#23B0FB;
+}
+
+.searchBox
+{
+	background-color:#ACDA22;
+	float:left;
+	height:41px;
+	width:194px;
+	text-align: left;
+	line-height:41px;
+	padding: 0px;
+}
+
+#searchInput
+{
+	height:30px;
+	width: 120px;
+	padding:0px;
+	border: 0px;
+	margin-left: 0px;
+	margin-top:6px;
+	font-family: "Microsoft YaHei", "New York", serif;
+	padding-left:5px;
+	float:left;
+	color: #777;
+	outline:none;
+}
+
+.searchBtn
+{
+	cursor: pointer;
+	width: 25px;
+	height:26px;
+	float:left;
+	padding:1px;
+	margin-top:6px;
+	background-image:url(../img/search_btn.png);
+	z-index: 3;
+	border:1px #fff solid;
+}
+
+.nav2
+{
+	margin-left:8px;
+	margin-top:8px;
+	float:left;
+	width: 931px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.nav2 ul
+{
+	padding: 0px;
+	background-color:#EFF1F3;
+	margin:0px;
+}
+
+.nav2 ul li
+{
+	float:left;
+	list-style: none;
+	font-size: 26px;
+	padding: 0 20px;
+	color: #B2B3B3;
+	cursor: pointer;
+}
+
+.nav2 ul li.selected
+{
+	background-color:#A1CB2F;
+	color: #fff;
+	cursor:default;
+}
+
+.nav2 .secondTab
+{
+	margin: 0 197px;
+}
+
+/* Head end */
+
+.body
+{
+	width: 1024px;
+	text-align:left;
+	color: white;
+}
+
+.importContent
+{
+	width : 949px;
+	background-color:#88B946;
+	padding: 25px 35px 55px 40px;
+	display: none;
+}
+
+.headImg
+{
+	margin-top:24px;
+	height: 162px;
+	width: 364px;
+	float: left;
+	font-weight: bold;
+}
+
+.headImgInfo
+{
+	float:left;
+	height: 162px;
+	width: 202px;
+}
+
+.headImgBtn
+{
+	margin-top:20px;
+	margin-left: 15px;
+	border: 3px solid #fff;
+	background-color: #9CC734;
+	height: 27px;
+	width: 151px;
+	text-align:center;
+	color:#fff;
+	line-height: 27px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.nameInfo
+{
+	float:left;
+	width: 364px;
+	height: 134px;
+	padding: 15px 15px 13px 11px;
+	margin-top: 24px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.sexSelect
+{
+	margin-top: 19px;
+	width:152px;
+	height:26px;
+	border:3px solid #fff;
+}
+
+.boySelect
+{
+	float:left;
+	width:76px;
+	height:26px;
+	background-image:url(../img/boy_selected.jpg);
+	cursor: pointer;
+}
+
+.girlUnselected
+{
+	float:left;
+	width:76px;
+	height:26px;
+	background-image:url(../img/girl_unselected.jpg);
+	cursor: pointer;
+}
+
+.birthDay
+{
+	margin-top: 19px;
+	line-height: 33px;
+	font-size: 20px;
+	font-weight:bold;
+	text-aling:left;
+}
+
+.birthDay input
+{
+	margin: 0 0 0 9px;
+	border: 0px;
+	padding-left: 5px;
+	height: 33px;
+	width:85px;
+	background-color:#ACDA22;
+	color: white;
+	outline:none;
+}
+
+.sexOri
+{
+	float:left;
+	margin-top: 24px;
+	width: 185px;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 15px 0 19px 10px;
+}
+
+.constell
+{
+	margin-top:23px;
+	font-size: 20px;
+	font-weight:bold;
+	float: left;
+}
+
+.constellSelect
+{
+	margin-top: 23px;
+	margin-left: 25px;
+	cursor:pointer;
+	float:left;
+}
+
+.detailInfo
+{
+	margin-top: 24px;
+}
+
+.detailInput
+{
+	float: left;
+}
+
+.detailInfo .detailIntro
+{
+	width: 57px;
+	height: 26px;
+	border:4px solid #fff;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+	line-height:26px;
+	float:left;
+}
+
+.detailInfo input
+{
+	height : 34px;
+	border: none;
+	outline: none;
+	margin: 0;
+	padding-left: 5px;
+	width: 192px;
+	font-family: "Microsoft YaHei", "New York", serif;
+	
+}
+
+.nextInput
+{
+	margin-left: 70px;
+}
+
+.secretAnswer
+{
+	margin-top:32px;
+}
+
+.keyAnswer
+{
+	float:left;
+}
+
+td.title
+{
+	width: 119px;
+	height: 32px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 10px 0px;
+	font-size: 21px;
+}
+
+td.titleInput
+{
+	width: 213px;
+	height: 32px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 10px 0px;
+}
+
+td.titleInput input
+{
+	width: 213px;
+	height: 32px;
+	font-family: "Microsoft YaHei", "New York", serif;
+	outline: none;
+	padding: 0 5px;
+	background-color: #ACDA22;
+	border: none;
+	color: #fff;
+}
+
+button{
+	border: 3px solid #fff;
+	background-color: #90BE3F;
+	font-family: "Microsoft YaHei", "New York", serif;
+	font-size: 21px;
+	width: 150px;
+	color: #fff;
+	cursor: pointer;
+	
+}
+
+.repasswordBtns
+{
+	float: left;
+	margin-top: 60px;
+	width: 150px;
+	margin-left: 51px;
+}
+
+.extendContent
+{
+	width : 949px;
+	background-color:#88B946;
+	padding: 25px 35px 55px 40px;
+	display: none;
+	text-align:left;
+}
+
+/* extendContent  */
+
+.extendBody
+{
+	margin-top: 26px;
+}
+
+.keywordsChoice
+{
+	font-size:	22px;
+	border:	6px solid #fff;
+	float:left;
+	padding: 10px;
+	height:463px;
+}
+
+.keywordsChoice input
+{
+	height: 33px;
+	padding: 0 5px;
+	outline: none;
+	font-size: 22px;
+	width: 337px;
+}
+
+.keywordsChoice table
+{
+	width: 100%;
+	margin: 0;
+	padding:0 ;
+	line-height: 25px;
+	font-size : 20px;
+	font-weight: bold;
+}
+
+.keywordsChoice td
+{
+	list-style:none;
+	width: auto;
+	text-align: center;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.keywordsChoice td.select
+{
+	background-color:#ACDA22;
+	width: 83px;
+}
+
+.keywordBox
+{
+	overflow-y: scroll;
+	width: 341px;
+	height:341px;
+	padding: 0px;
+	background-color:#ACDA22;
+}
+
+/* Let's get this party started */
+.keywordBox::-webkit-scrollbar {
+    width: 33px;
+}
+ 
+/* Track */
+.keywordBox::-webkit-scrollbar-track {
+	/*
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+	*/
+    background: #ACDA22;
+	
+}
+ 
+/* Handle */
+.keywordBox::-webkit-scrollbar-thumb {
+   /* -webkit-border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    border-radius: 10px;*/
+    background: #8CBC42; 
+   
+}
+
+.keywordBtns
+{
+	width: 170px;
+	height: 463px;
+	float:left;
+	padding: 0 18px;
+}
+
+.keywordBtns button
+{
+	width: 161px;
+	font-weight: bold;
+}
+
+.myKeyword
+{
+	font-size:	22px;
+	border:	6px solid #fff;
+	float:left;
+	padding: 10px;
+	height: 463px;
+	width: 310px;
+}
+
+.myKeywordBox
+{
+	height: 441px;
+}
+
+.myKeywordBox *
+{
+	cursor: pointer;
+}
+
+.myKeywordBox div
+{
+	position: absolute;
+	border: 3px solid #fff;
+	padding: 0 5px;
+}
+
+/* extendContent */
+
+
+.customContent
+{
+	width : 949px;
+	background-color:#88B946;
+	padding: 25px 35px 55px 40px;
+	display: none;
+	text-align:center;
+}
+
+div.selectedTab
+{
+	display:block;
+	font-weight: bold;
+}
+
+
+.tail
+{
+	background-color:#EEF0F1;
+	height: 41px;
+	text-align:center;
+	vertical-align:middle;
+	font-size:10px;
+	color:#555;
+	padding: 20px;
+}

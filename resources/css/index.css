@@ -1,0 +1,226 @@
+body
+{
+	background-color:#FFFFFF;
+	margin: 0;
+	font-size:62.5%;
+}
+div
+{
+	width:	auto;
+}
+
+inpurt
+{
+	vertical-align: middle;
+}
+
+.clear
+{
+	clear: both;
+}
+
+#left_space
+{
+	float: left;
+}
+
+#content
+{
+	position: relative;
+	width: 1024px;
+	margin: 0px auto 0px;
+	background:	url("/resources/img/titlebg.png") no-repeat #F0F2F4;
+	min-height:	760px;
+}
+
+#content .title
+{
+	position: absolute;
+	top	:	87px;
+	left:	402px;
+	display: none;
+}
+
+#content #titleText
+{
+	position: absolute;
+	top: 183px;
+	left: 350px;
+	width: 436px;
+	height: 32px;
+	color: #fff;
+	font-size: 25px;
+	display:none;
+	font-family: "Microsoft YaHei" ! important;
+}
+
+.bodyBox
+{
+	position: absolute;
+	margin-top: 244px;
+	margin-left: 201px;
+	width: auto;
+	height: 180px;
+	display: block;
+}
+
+#searchBox
+{
+`	background-color: #fff;
+	width: 597px;
+	height: 41px;
+	font-size: 33px;
+	font-family: "Microsoft YaHei" ! important;
+	margin-right: 14px;
+	border:0px;
+}
+
+#searchBtn
+{
+	background-color: #fff;
+	border:none;
+	height: 43px;
+	width: 73px;
+	vertical-align: top;
+}
+
+.indextext
+{
+	font-family: "Microsoft YaHei" ! important;
+	font-size: 21px;
+	font-weight: bold;
+	color: #777777;
+}
+
+#regBtn
+{
+	margin-left: 161px;
+	float: left;
+}
+
+#loginBtn
+{
+	margin-left: 125px;
+	float: left;
+}
+
+#regBtn, #loginBtn
+{
+	margin-top: 80px;
+	cursor: pointer;
+}
+
+.clickedBtn
+{
+	
+}
+
+.animateBox
+{
+	position: absolute;
+	top: 420px;
+	left: 357px;
+	width: 311px;
+	overflow:hidden;
+	
+}
+
+.slideBox
+{
+	overflow:hidden;
+	float: left;
+	padding: 0;
+	display: none;
+}
+
+.regBox
+{
+	width : 1500%;
+	margin: 0;
+}
+
+.loginBox
+{
+	width: 320px;
+	margin: 0;
+}
+
+.slideBox li
+{
+	list-style-type:none;
+	width: auto;
+	float: left;
+	margin-right:20px;
+}
+
+.data_input
+{
+	width: 309px;
+}
+
+#loginform .data_input
+{
+	margin: 25px 0;
+}
+#regform .data_input
+{
+	margin: 15px 0;
+}
+
+.inputText
+{
+	height: 44px;
+	width: 307px;
+	border: 1px solid #777777;
+	text-align: center;
+	font-size: 21px;
+	color: #777777;
+	font-family:  "Microsoft YaHei" ! important;
+}
+
+
+
+#loginform .loginBtn
+{
+	height: 44px;
+	border: 1px solid #777777;
+	color: #777777;
+	font-size: 21px;
+	font-family:  "Microsoft YaHei" ! important;
+	cursor: pointer;
+}
+
+#reg_next_btn
+{
+	padding-top: 2px;
+	height: 44px;
+	width: 52px;
+}
+
+input.detailInfo
+{
+	width: 244px;
+	float: left;
+}
+
+.prevSpace , .prevBtn
+{
+	padding-top: 2px;
+	height: 44px;
+	float:left;
+	line-height:44px;
+	margin-right: 8px;
+	width: 52px;
+}
+
+.prevBtn , .nextBtn
+{
+	cursor: pointer;
+}
+
+#reg_captcha
+{
+	width: 157px;
+	margin-right:10px;
+	float:left;
+}

@@ -1,0 +1,468 @@
+@charset "utf-8";
+/* CSS Document */
+
+html
+{
+	text-align:center;
+}
+
+body
+{
+	width:1024px;
+	margin: 0 auto;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	font-family: "Microsoft YaHei", "New York", serif;
+}
+
+.clear
+{
+	clear:both;
+}
+
+.hidden {
+	display:none;
+}
+
+.head
+{
+	min-height: 81px;
+	position: static;
+}
+
+.headWrapper
+{
+	position:fixed;
+	z-index: 10000;
+	display:block;
+	width: 1024px;
+	min-height: 81px;
+}
+
+.nav
+{
+	width:auto;
+	height: 99px;
+	float:left;
+}
+
+.logo
+{
+	width: 80px;
+	height: 80px;
+	background-image: url(../img/logo.png);
+	margin-bottom: 19px;
+	float:left;
+}
+
+/* Settings Music Player */
+
+.media_player
+{
+	float:left;
+}
+
+.media_logo
+{
+	width: 43px;
+	height: 41px;
+	background-image:url('../img/media/logo.jpg');
+	float:left;
+}
+
+.media_title
+{
+	width: 152px;
+	height: 41px;
+	white-space: nowrap;
+	background-color: #ACDA22;
+	line-height: 41px;
+	color: #fff;
+	font-family: "Microsoft YaHei", "New York", serif;
+	font-size: 24px;
+	float:left;
+}
+
+.media_title ul li
+{
+	cursor: pointer;
+	position: relative;
+}
+
+.media_title ul li ul
+{
+	position: absolute;
+	top: 41px;
+	width: 152px;
+	left: 0px;
+	z-index: 99;
+	display: none;
+	background-color: #ACDA22;
+	border-top: 1px solid #999;
+}
+
+.media_title ul li ul li
+{
+	display:  block; 
+	width: 152px; 
+	line-height:41px; 
+	font-size: 30px;
+	color: #fff;
+	height: 41px;
+	font-family: "Microsoft YaHei", "New York", serif;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.media_playpause
+{
+	border-left: 1px solid #999;
+	float:left;
+	width: 38px;
+	height: 41px;
+	background-color: #ACDA22;
+	padding:  0px 6px;
+	overflow:hidden;
+}
+
+.media_playpause p
+{
+	display: none;
+	width: 37px;
+	height: 41px;
+	margin:0;
+	cursor: pointer;
+}
+
+.media_playpause .playZ
+{
+	background: url('../img/media/play_paused.png') 0 0 no-repeat;
+	display: block;
+}
+.media_playpause .pauseZ
+{
+	background: url('../img/media/play_paused.png') 0px -42px no-repeat;
+}
+.playingZ .playZ, .playingZ .loadingZ, .playingZ .errorZ 
+{ 
+	display: none;
+}
+
+.loadingZ .playZ, .loadingZ .pauseZ, .loadingZ .errorZ 
+{ display: none; }
+
+
+.playingZ .pauseZ
+{
+	display: block;
+}
+
+.loadingZ .loadingZ { display: block; }
+
+/* Settings Music Player */
+
+
+.navigator
+{
+	float:left;
+}
+
+.navigator ul
+{
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-color:#ACDA22;
+	height: 41px;
+}
+
+.navigator ul li
+{
+	float:left;
+	width:64px;
+	line-height: 41px;
+	list-style:none;
+	font-family: "Microsoft YaHei", "New York", serif;
+	font-size: 24px;
+	margin: 0 10px;
+	color : #fff;
+	cursor: pointer;
+}
+
+
+
+.nav_off
+{
+	background-color:#ACDA22;
+}
+
+.nav_on
+{
+	background-color:#23B0FB;
+}
+
+.searchBox
+{
+	background-color:#ACDA22;
+	float:left;
+	height:41px;
+	width:194px;
+	text-align: left;
+	line-height:41px;
+	padding: 0px;
+}
+
+#searchInput
+{
+	height:30px;
+	width: 120px;
+	padding:0px;
+	border: 0px;
+	margin-left: 0px;
+	margin-top:6px;
+	font-family: "Microsoft YaHei", "New York", serif;
+	padding-left:5px;
+	float:left;
+	color: #777;
+	outline:none;
+}
+
+.searchBtn
+{
+	cursor: pointer;
+	width: 25px;
+	height:26px;
+	float:left;
+	padding:1px;
+	margin-top:6px;
+	background-image:url(../img/search_btn.png);
+	z-index: 3;
+	border:1px #fff solid;
+}
+
+.nav2
+{
+	height: 39px;
+	background: #CEEC53;
+	width: 100%;
+}
+
+.nav2 > div
+{
+	float:left;
+	padding: 0px 5px;
+	font-size: 22px;
+	height: 39px;
+	color: #fff;
+	font-family: "Microsoft YaHei", "New York", serif;
+	line-height: 39px;
+	font-weight: bold;
+}
+
+.nav2 > div.selected
+{
+	background:#23B0FB;
+}
+
+.statusBody
+{
+	width: 1024px;
+}
+
+.leftBar
+{
+	float: left;
+	position: fixed;
+	width: 80px;
+	background:#ACDA22;
+	height: 500px;
+}
+
+.leftBar > div
+{
+	color: #fff;
+	font-size:22px;
+	padding: 5px 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.statusWrapper
+{
+	margin-left: 80px;
+	margin-top: 0px;
+	float: left;
+}
+
+.statusContent
+{
+	padding: 10px;
+	margin: 0px;
+	width: 924px;
+	zoom: 1;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-color: #E6E6E6;
+}
+
+.statusImg
+{
+	cursor: pointer;
+}
+
+.statusInfoBox
+{
+	height: 60px;
+	float:left;
+}
+
+ul{ margin:0; padding:0;}
+ul li{ list-style:none }
+
+.statusInfoBox ul li
+{
+	float:left;
+	height:60px; 
+	display:inline; 
+	line-height:60px; 
+	position:relative;
+}
+
+.statusInfoBox ul li ul{ 
+	position:absolute;
+	z-index:99;
+	display:none;
+	top: 60px;
+	width: 60px;
+	left:0px;
+}
+
+.statusInfoBox ul li ul li{
+	display:  block; 
+	width: 60px; 
+	line-height:45px; 
+	font-size: 30px;
+	color: #fff;
+	height: 45px;
+	font-family: "Microsoft YaHei", "New York", serif;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.statusFriend
+{
+	background: #ACDA22;
+}
+
+.statusFans
+{
+	background: #23B0FB;
+}
+
+em
+{
+	font-style: normal;
+}
+
+.statusWords
+{
+	margin-left: 14px;
+	float:left;
+	width: 820px;
+	text-align: left;
+	word-wrap: break-word;
+	padding-right: 30px;
+	
+}
+
+.statusWords em
+{
+	line-height: 22px;
+	display: inline;
+}
+
+.statusWords p
+{
+	margin: 0;
+}
+
+a
+{
+	text-decoration:none;
+}
+
+.statusWords a
+{
+	color: #23B0FB;
+}
+
+.statusWords a:hover
+{
+	text-decoration: underline;
+}
+
+.feedInfo
+{
+	height: 53px;
+	position: relative;
+	margin-top: 10px;
+}
+
+.feedInfo span
+{
+	float: right;
+	color: #fff;
+	font-size:27px;
+	text-align: center;
+}
+
+.feedInfo .feedComment
+{
+	width: 68px;
+	height: 53px;
+	background:#ACDA22;
+	line-height: 53px;
+	cursor: pointer;
+	margin-left: 20px;
+}
+
+.feedInfo .feedShare
+{
+	width: 68px;
+	height: 53px;
+	background: #23B0FB;
+	line-height: 53px;
+	cursor: pointer;
+	
+}
+
+.feedInfo span.feedTime
+{
+	position:relative;
+	float:none;
+	color:#000;
+	font-size:14px;
+	top:30px;
+}
+
+.feedInfo span.feedSource
+{
+	position:relative;
+	float:none;
+	color:#000;
+	font-size:14px;
+	top:30px;
+	margin-left: 10px;
+}
+
+.commentContent
+{
+	background: #CEEC53;
+	padding: 10px;
+	display:none;
+}
+
+.feedSource a
+{
+	cursor: pointer;
+}
