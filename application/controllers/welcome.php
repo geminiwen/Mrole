@@ -1,11 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 header("Content-Type:text/html;charset=utf-8");
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller 
+{
 	
 	 function __construct()
  {
            parent::__construct();
 		   $this->load->model("user");
+		   $this->load->library('session');
  }
 
 	 function login()
@@ -14,9 +16,7 @@ class Welcome extends CI_Controller {
 	}
 	
 	function checklogin()
-	{
-
-		$user = $this->user->user_select($_POST['S_ID']);
+	{   $user = $this->user->user_select($_POST['S_ID']);
 		$num = count($user);
 		if($num)
 		{
@@ -24,7 +24,6 @@ class Welcome extends CI_Controller {
 			{
 				echo '登陆成功';
 				echo '<br />';
-				$this->load->library('session');
 				$arr = array('S_ID'=>$user[0]->S_ID);
 				$this->session->set_userdata($arr);
 				echo $this->session->userdata('S_ID');
@@ -37,19 +36,17 @@ class Welcome extends CI_Controller {
 				$json_str=json_encode($user);
 			    echo $json_str;	
 			}
-			else
-			{
+			else {
 				echo "<script>alert('密码错误！');history.back();</script>";
-			}
-		}
-		else
-		{
+			     }
+		  }else{
 			echo "<script>alert('用户名不存在！');history.back();</script>";		}
-	}
+             	}
+	
 	
 	    function checksession()
 	{
-		$this->load->library('session');
+		
 		if( $this->session->userdata('S_ID'))
 		{
 			echo '已经登录';
@@ -62,7 +59,7 @@ class Welcome extends CI_Controller {
 
 	function loginout()
 	{
-		$this->load->library('session');
+		
 		$this->session->unset_userdata('S_ID');
 	}
 
@@ -89,14 +86,14 @@ class Welcome extends CI_Controller {
 				   $data=array('S_ID'=>$S_ID);
 				   $this->load->view('checkregister',$data); 
 				   
-				    }
+				  }
 			
 			}else {
 				echo "<script>alert('姓名与学号不匹配！');history.back();</script>";
-				}
-		}else {
+				 }
+		 }else {
 			echo "<script>alert('该学号不存在！');history.back();</script>";}
-	}
+	           }
 	
 	
 	function register_update()
@@ -104,7 +101,8 @@ class Welcome extends CI_Controller {
 	
 		$e_mail = $this->user->e_mail_select($_POST['e_mail']);
 		$num = count($e_mail);
-		if($num == ''){
+		if($num == '')
+		{
 		$S_ID = $_GET['S_ID'];
 		$password = md5($_POST['password']);
 		$position = $_POST['position'];
@@ -115,9 +113,9 @@ class Welcome extends CI_Controller {
 		$this->user->user_update($S_ID,$arr);
 		echo "注册成功";
 		}else{
-			echo "该邮箱已被注册";}
+			echo "该邮箱已被注册";
+			 }
 		
 	}	 
 	
 }
-?>

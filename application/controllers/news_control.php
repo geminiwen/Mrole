@@ -11,14 +11,12 @@ class News_control extends CI_Controller {
 	function news_order()
 	{   
         $news = $this->news_model->news_select();
-		foreach($news as $arr)
-		{
-		  $title = ($arr->title);
-		  echo $title = word_limiter($title, 1);
-		  echo '<br />';
-		  $data['title'] = $title;
-		}
-		$this->load->view("news_view",$data);
+	    foreach($news as $arr){
+				$title=($arr->title); 
+			echo $title;
+		$json_str=json_encode($title);
+	    echo $json_str;	     
+		echo "<br />";          
+		                      }
 	}
 }
-?>
