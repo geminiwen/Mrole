@@ -1,6 +1,6 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+header("Content-Type:text/html;charset=utf-8");
 class Upload extends CI_Controller
 {
 	function index()
@@ -26,31 +26,6 @@ class Upload extends CI_Controller
 		$this->load->view('up',$data);
 	}
 
-	function up()
-	{   $this->load->model("user");
-	    $this->load->library('session');
-		$S_ID = $this->session->userdata('S_ID');
-		$config['upload_path']="./upload";
-		$config['allowed_types']="gif|jpg|png";
-		$config['max_size']="20000";
-		$config['overwrite']="true";
-		$this->load->library("upload",$config);
-		if($this->upload->do_upload('upfile'))
-		{
-			$data=array('upload_data'=>$this->upload->data());
-			$img=$data['upload_data']['orig_name']; 
-			$arr = array('img'=>$img);
-		    $this->user->user_update($S_ID,$arr);
-			$json_str=json_encode($data);
-			echo $json_str;	
-			
-		}
-		else
-		{
-			$error=array('error'=>$this->upload->display_errors());
-			var_dump($error);
-	}
-}
 
      function up_inf()
 	 {
@@ -76,20 +51,18 @@ class Upload extends CI_Controller
 		 }
 		 
 		function search()
-		{
+	{
 		 $this->load->model("user");
 		 $user = $this->user->select($_POST['S_ID']);
 		 $num = count($user);
 		 if($num)
 		{foreach ($user as $row)
-        {
-	     $json_str=json_encode($row);
-		 echo $json_str;
-		 echo '<br>';
-		 
-         }
-     }
+          { 
+	         $json_str=json_encode($row);
+		     echo $json_str;
+		     echo '<br>';	   
+          }
+        }
 		
-  }
+    }
 }
-?>

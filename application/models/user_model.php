@@ -21,13 +21,13 @@ class User_model extends CI_Model
 		$this->load->database();
 		$this->db->where('stu_username',$username);
 		$this->db->where('stu_realname',$realname);
-		$this->db->where('stu_checked',0);
+		$this->db->where('st 	u_checked',0);
 		$this->db->update('stu_info',$data);
 		$affcted_row_num = $this->db->affected_rows();
 		$this->db->close();
 		return $affcted_row_num;
 	}
-	
+
 	function user_select($S_ID)
 	{
 		$this->db->where('S_ID',$S_ID);
@@ -62,3 +62,6 @@ class User_model extends CI_Model
 		return $query->result();
 	}
 }
+
+
+>>>>>>> 89cdc98279daf805ca17edc77cb03df832fabf96
