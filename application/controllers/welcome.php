@@ -2,17 +2,15 @@
 header("Content-Type:text/html;charset=utf-8");
 class Welcome extends CI_Controller {
 	
-	 function __construct()
- {
-           parent::__construct();
-		   $this->load->model("user");
- }
+	function __construct()
+	{
+        parent::__construct();
+	}
 
-	 function login()
+	function login()
 	{
 		$this->load->view('login');
 	}
-	
 	function checklogin()
 	{
 
@@ -47,7 +45,7 @@ class Welcome extends CI_Controller {
 			echo "<script>alert('用户名不存在！');history.back();</script>";		}
 	}
 	
-	    function checksession()
+	function checksession()
 	{
 		$this->load->library('session');
 		if( $this->session->userdata('S_ID'))
@@ -116,8 +114,12 @@ class Welcome extends CI_Controller {
 		echo "注册成功";
 		}else{
 			echo "该邮箱已被注册";}
-		
-	}	 
+	}
+	
+	function index()
+	{
+		$this->load->view('index');
+	}
 	
 }
 ?>

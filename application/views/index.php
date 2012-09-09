@@ -55,8 +55,8 @@
 					<li>
 					<div>
 						<form action="login" method="post" id="loginform" >
-							<div class="data_input"><label for="login_username">学号：</label><input type="text" name="username" class="inputText" id="login_username" value="请输入学号" /></div>
-							<div class="data_input"><label for="login_password">密码：</label><input type="text" name="password" class="inputText" id="login_password" value="请输入密码"  /></div>
+							<div class="data_input"><label for="login_username">学号：</label><input type="text" name="username" class="inputText" id="login_username"  /></div>
+							<div class="data_input"><label for="login_password">密码：</label><input type="text" name="password" class="inputText" id="login_password"   /></div>
 							<div class="data_input" style="display:inline"><input type="button" value="马上登陆" class="loginBtn" id="login_btn" /></div>
 						</form>
 					</div>
