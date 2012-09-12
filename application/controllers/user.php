@@ -9,12 +9,12 @@ class User extends CI_Controller
         parent::__construct();
     }
 	
-	function check_stunum()
+	function check_stunum()	// 检查用户名
 	{
 		$stu_num = $this->input->post('username');
 		$this->load->model("User_model");
 		
-		$query_result = $this->User_model->check_stu_number($stu_num);
+		$query_result = $this->User_model->query_by_username($stu_num);
 		
 		$result_count = count( $query_result );
 		$result = array();
@@ -35,7 +35,7 @@ class User extends CI_Controller
 		echo json_encode($result);
 	}
 	
-	function request_register()
+	function request_register()	// 请求注册
 	{
 		$username	= $this->input->post('username');
 		$realname	= $this->input->post('realname');
@@ -50,9 +50,7 @@ class User extends CI_Controller
 		$captcha	= strtolower($captcha);
 		$password	= md5(md5($password));
 		
-		
-		header("Content-Type: application/json; charset=utf-8");
-		$inner_captcha	= $this->session->userdata('captcha');
+		$inner_captcha	= $this->session->userdata('captcha');	// 读取session中的验证码
 		
 		$result			= array();
 		
@@ -74,29 +72,120 @@ class User extends CI_Controller
 						'stu_checked'	=> 1
 						);
 			$success = $this->User_model->insert_newuser($username,$realname,$data);
-			if( $success > 0 )
-			{
-				$result['result'] = true;
-			}
-			else
+			if( $success == 0 )
 			{
 				$result['result']		= false;
 				$result['message']		= '用户名已经存在';
 				$result['errorcode']	= 2;
+				break;
 			}
+			$result['result'] = true;
 		}while(0);
 		
+		// 应该做个注册完自动登录
 		
+		header("Content-Type: application/json; charset=utf-8");
 		echo json_encode($result);
 	}
 	
-	function request_login()
+	function request_login()	// 请求登录
 	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		$password = md5(md5($password));
+		$password = md5(md5($password)); // 两次MD5加密
+		
+		$this->load->model("User_model");
 		
 		
+		$result = array();
 		
-	}	
+		do
+		{
+			$query_result = $this->User_model->query_by_username($username);
+		
+			$result_count = count( $query_result );
+			
+			if( $result_count === 0 )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 3;
+				$result['message'] = '用户不存在';
+				break;
+			}
+			
+			$query_result = $this->User_model->query_by_username_password($username,$password);
+			
+			$result_count = count( $query_result );
+			
+			if( $result_count === 0 )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 4;
+				$result['message'] = '密码错误';
+				break;
+			}
+			
+			$this->session->set_userdata('loginuser',$query_result[0]);
+			$result['result'] = true;
+			
+			
+			
+		}while(0);
+		header("Content-Type: application/json; charset=utf-8");
+		echo json_encode($result);
+	}
+	
+	function request_friend() //好友操作请求
+	{
+		$loginsuer = $this->session->userdata('loginuser');
+		$result = array();
+		do
+		{
+			if( null == $loginuser )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 5;
+				$result['message'] = '用户未登录';
+				break;
+			}
+			
+			$s_id = $loginuser->stu_username;
+			$action =  $this->input->get('action');	// add 添加 delete 删除 （请求验证暂时放着）
+			$f_id = $this->input->get('f_id',$s_id);
+			
+			$this->load->model('User_model');
+			if( !strcmp($action,'add') )
+			{
+			
+				$success = $this->User_model->add_friend($s_id,$f_id);
+				
+				if( $success == 0 )
+				{
+					$result['result'] = false;
+					$result['errorcode'] = 6;
+					$result['message'] = '添加好友失败';
+					break;
+				}
+				
+				$result['result'] = true;
+			}
+			else( !strcmp($action,'delete') )
+			{
+				$success = $this->User_model->delete_friend($s_id,$f_id);
+				
+				if( $success == 0 )
+				{
+					$result['result'] = false;
+					$result['errorcode'] = 7;
+					$result['message'] = '添加好友失败';
+					break;
+				}
+				
+				$result['result'] = true;
+			}
+			
+		}while(0);
+		header("Content-Type: application/json; charset=utf-8");
+		echo json_encode($result);
+	}
 }
