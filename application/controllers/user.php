@@ -73,7 +73,7 @@ class User extends CI_Controller
 						'stu_email'		=> $email,
 						'stu_checked'	=> 1
 						);
-			$success = $this->User_model->register($username,$realname,$data);
+			$success = $this->User_model->insert_newuser($username,$realname,$data);
 			if( $success > 0 )
 			{
 				$result['result'] = true;
@@ -95,6 +95,8 @@ class User extends CI_Controller
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$password = md5(md5($password));
+		
+		
 		
 	}	
 }

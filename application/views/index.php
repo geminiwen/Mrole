@@ -47,7 +47,7 @@
                     <label for="reg_birthday" style="float:left;">生日：</label><input type="text" name="brithday" class="inputText detailInfo" id="reg_birthday" title="请输入你的出生年/月/日" /><div class="clear" ></div></div>
 					<div class="data_input"><div class="prevSpace">&nbsp;</div>
                     <label for="reg_email" style="float:left;">邮箱：</label><input type="text" name="email" class="inputText detailInfo" id="reg_email" title="请输入你的Email地址" /><div class="clear" ></div></div>
-					<div class="data_input" ><div class="prevSpace" id="reg_submit_btn"><img width="52" height="44" src="resources/img/right_arrow_disabled.png" id="img_next_btn_2"  /></div><input type="text" name="captcha" class="inputText detailInfo" id="reg_captcha" /> <img alt="test" style="float:left" width="76" height="48" src="captcha" id="captcha" /><div class="clear" ></div></div>
+					<div class="data_input" ><div class="prevSpace" id="reg_submit_btn"><img width="52" height="44" src="resources/img/right_arrow_disabled.png" id="img_next_btn_2"  /></div><input type="text" name="captcha" class="inputText detailInfo" id="reg_captcha" /> <img alt="test" style="float:left" width="76" height="48" src="captcha?i=<?= rand(); ?>" id="captcha" /><div class="clear" ></div></div>
 					</li>
 				</form>
 				</ul>

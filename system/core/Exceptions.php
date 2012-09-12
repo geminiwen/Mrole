@@ -179,7 +179,7 @@ class CI_Exceptions {
 			ob_end_flush();
 		}
 		ob_start();
-		include('F:/PHP/htdocs/Mrole/application/'.'errors/error_php.php');
+		include(APPPATH.'errors/error_php.php');
 		$buffer = ob_get_contents();
 		ob_end_clean();
 		echo $buffer;

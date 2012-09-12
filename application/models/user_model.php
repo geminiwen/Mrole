@@ -9,23 +9,31 @@ class User_model extends CI_Model
 	function check_stu_number($num)
 	{
 		$this->load->database();
-		$query = $this->db->get_where('stu_info', array('stu_username' => $num) );
+		$this->db->where("stu_username",$num);
+		$this->db->where("stu_checked",0);
+		$query = $this->db->get("stu_info");
 		$result	= $query->result();
 		$query->free_result();
 		$this->db->close();
 		return $result;
 	}
 	
-	function register($username,$realname,$data)
+	function insert_newuser($username,$realname,$data)
 	{
 		$this->load->database();
 		$this->db->where('stu_username',$username);
 		$this->db->where('stu_realname',$realname);
-		$this->db->where('st 	u_checked',0);
+		$this->db->where('stu_checked',0);
 		$this->db->update('stu_info',$data);
 		$affcted_row_num = $this->db->affected_rows();
 		$this->db->close();
 		return $affcted_row_num;
+	}
+	
+	function query_by_username_password($username,$password)
+	{
+		$this->load->database();
+		$this->db->where('username');
 	}
 
 	function user_select($S_ID)
@@ -62,6 +70,3 @@ class User_model extends CI_Model
 		return $query->result();
 	}
 }
-
-
->>>>>>> 89cdc98279daf805ca17edc77cb03df832fabf96
