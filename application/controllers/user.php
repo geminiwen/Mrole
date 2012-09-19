@@ -125,7 +125,7 @@ class User extends CI_Controller
 				break;
 			}
 			
-			$this->session->set_userdata('loginuser',$query_result[0]);
+			$this->session->set_userdata('loginuser',$query_result[0]);  //记录session
 			$result['result'] = true;
 			
 			
@@ -134,6 +134,71 @@ class User extends CI_Controller
 		header("Content-Type: application/json; charset=utf-8");
 		echo json_encode($result);
 	}
+	
+	
+	
+	
+	function request_update_register()	// 请求修改注册信息
+	{
+		$login_user = $this->session->usedata('loginuser');
+	
+     	$realname	    = $this->input->post('realname');
+		$job		    = $this->input->post('job');
+		$birthday		= $this->input->post('birthday');
+		$email			= $this->input->post('email');
+		$sex	   	    = $this->input->post('sex');
+		$sex_2	   	    = $this->input->post('sex_2');
+		$constellation	= $this->input->post('constellation');
+		$school			= $this->input->post('school');
+		$college		= $this->input->post('college');
+		$class			= $this->input->post('class');
+		$tel			= $this->input->post('tel');
+		$question		= $this->input->post('question');
+		$answer			= $this->input->post('answer');
+		
+		$result			= array();
+		
+		do{
+			if( null == $login_user )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 5;
+				$result['message'] = "用户未登录";
+				break;
+			}
+			
+			$this->load->model("User_model");
+			$data = array(
+						'stu_realname'		=> $realname,
+						'stu_job'			=> $job,
+						'stu_birthday'		=> $birthday,
+						'stu_email'			=> $email,
+						'stu_sex'			=> $sex,
+						'stu_sex_2'  		=> $sex_2,
+						'stu_constellation'	=> $constellation,
+						'stu_school'		=> $school,
+						'stu_college'		=> $college,
+						'stu_class'			=> $class,
+						'stu_tel'			=> $tel,
+						'stu_question'		=> $question,
+						'stu_answer'		=> $answer
+						);
+			$success = $this->User_model->update_newuser($login_user,$data);
+			
+			if( $success == 0 )
+			{
+				$result['result']		= false;
+				$result['message']		= '服务器内部错误，个人信息更新失败';
+				$result['errorcode']	= -1;
+				break;
+			}
+			$result['result'] = true;
+		}while(0);
+		
+		header("Content-Type: application/json; charset=utf-8");
+		echo json_encode($result);
+	}
+	
 	
 	function request_friend() //好友操作请求
 	{
@@ -151,7 +216,7 @@ class User extends CI_Controller
 			
 			$s_id = $loginuser->stu_username;
 			$action =  $this->input->get('action');	// add 添加 delete 删除 （请求验证暂时放着）
-			$f_id = $this->input->get('f_id',$s_id);
+			$f_id = $this->input->get('f_id',$f_id);  //http method   注册时已把自己加为好友
 			
 			$this->load->model('User_model');
 			if( !strcmp($action,'add') )
@@ -169,7 +234,7 @@ class User extends CI_Controller
 				
 				$result['result'] = true;
 			}
-			else( !strcmp($action,'delete') )
+			else if( !strcmp($action,'delete') )
 			{
 				$success = $this->User_model->delete_friend($s_id,$f_id);
 				
@@ -177,7 +242,7 @@ class User extends CI_Controller
 				{
 					$result['result'] = false;
 					$result['errorcode'] = 7;
-					$result['message'] = '添加好友失败';
+					$result['message'] = '删除好友失败';
 					break;
 				}
 				
@@ -188,4 +253,55 @@ class User extends CI_Controller
 		header("Content-Type: application/json; charset=utf-8");
 		echo json_encode($result);
 	}
+	
+	
+	
+	function personal_pic_update()     //用户上传头像
+	{
+		$login_user = $this->session->usedata('loginuser');
+		$result = array();
+		do
+		{
+			if( null == $login_user )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 5;
+				$result['message'] = "用户未登录";
+				break;
+			}
+			
+			$datefile = $login_user->stu_username;     //文件名设置为用户学号
+			
+			if(!file_exists('./'.$datefile))
+			{
+			    mkdir('./'.$datefile,0777);           //文件的权限(可读，可写，可执行)并且新建文件夹
+			    @chmod ($datefile, 0777);             //进行一次文件夹mode的转换
+			}
+			
+			    $config['upload_path'] = './'.$datefile;
+		        $config['allowed_types'] = "gif|jpg|png";
+			    $config['max_size'] = '100';
+                $config['max_width']  = '1024';
+                $config['max_height']  = '768';
+				$config['overwrite'] = 'false';
+				$config ['file_name'] = $this->input->post('pic_name');   //图片自命名
+				$this->load->library("upload",$config);
+			
+		        $success = $this->upload->do_upload('upfile');
+				if( $success === 0 )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 8;
+				$result['message'] = "头像上传失败";
+				break;
+			}
+		        $result['result'] = true;
+				
+		}while(0);
+		
+		header("Content-Type: application/json; charset=utf-8");
+		echo json_encode($result);
+		
+	}
+
 }
