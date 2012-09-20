@@ -27,11 +27,12 @@ class Status_model extends CI_Model
 	
 	
 	function delete_status($status_id)        //删除一个状态
-	{
+	{	
 		$this->load->database();
 		$data = array(
 			'status_id' => $status_id
 		);
+		
 		$this->db->delete('status', $data);
 		
 		$affected_row = $this->db->affected_rows();
@@ -144,5 +145,19 @@ class Status_model extends CI_Model
 		$this->db->close();
 		
 		return $result_array;
+	}
+	
+	
+	function check_comment_num_by_id($status_id)     //统计某条状态下的评论总数
+	{
+		$this->load->database();
+		
+		$this->db->where("comment_status_id",$status_id);
+		$query = $this->db->get("status_comment");
+		$result	= $query->result();
+		$query->free_result();            //释放当前查询所占用的内存并删除其关联的资源标识
+		$this->db->close();
+		return $result;
+	
 	}
 }

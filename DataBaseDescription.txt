@@ -1,0 +1,61 @@
+脉络用户表
+表名：stu_info
+`stu_username` varchar(10) NOT NULL COMMENT '学号'
+`stu_realname` varchar(8) NOT NULL COMMENT '姓名'  
+`stu_password` varchar(32) DEFAULT NULL COMMENT '密码' 
+`stu_job` varchar(30) DEFAULT NULL COMMENT '职位'
+`stu_birthday` date DEFAULT NULL COMMENT '生日'
+  
+`stu_email` varchar(50) DEFAULT NULL COMMENT '电邮'
+`stu_sex` varchar(10) DEFAULT NULL COMMENT '性别' 
+`stu_sex2` varchar(10) DEFAULT NULL COMMENT '性向' 
+`stu_constellation` varchar(10) DEFAULT NULL COMMENT '星座'
+ 
+`stu_school` varchar(10) DEFAULT NULL COMMENT '学校' 
+`stu_college` varchar(10) DEFAULT NULL COMMENT '学院' 
+`stu_class` varchar(10) DEFAULT NULL COMMENT '班级' 
+`stu_tel` varchar(15) DEFAULT NULL COMMENT '手机号'
+  
+`stu_question` varchar(50) DEFAULT NULL COMMENT '保密问题'  
+`stu_answer` varchar(50) DEFAULT NULL COMMENT '保密问题答案'
+  
+`stu_checked` bit(1) NOT NULL COMMENT '是否已注册'
+ PRIMARY KEY (`stu_username`)
+)
+
+
+好友列表
+表名：friend 
+`user_id` varchar(10) NOT NULL COMMENT '学号'
+  
+`friend_id` varchar(10) NOT NULL COMMENT '好友学号'
+  
+`type` int(2) NOT NULL'0为好友，1为关注'
+
+ PRIMARY KEY (`user_id`)
+) 
+
+
+状态列表
+表名：status
+
+`status_id` int(20) NOT NULL AUTO_INCREMENT COMMENT '状态编号'
+`status_user` varchar(10) NOT NULL COMMENT '学号' 
+`status_content` varchar(500) NOT NULL COMMENT '内容' 
+`status_time` datetime NOT NULL COMMENT '发表时间' 
+`status_comment_num` int(10) NOT NULL COMMENT '评论数'  
+PRIMARY KEY (`status_id`)
+) 
+
+
+状态评论列表
+表名：status_comment
+ 
+`comment_id` int(20) NOT NULL AUTO_INCREMENT COMMENT '序号' 
+`comment_status_id` int(20) NOT NULL COMMENT '对应状态序号' 
+`comment_user` varchar(10) NOT NULL COMMENT '学号'  
+`comment_content` varchar(500) NOT NULL COMMENT '评论内容'  
+`comment_time` datetime NOT NULL COMMENT '评论时间' 
+`comment_reply_id` int(20) NOT NULL COMMENT '回复评论对应的评论号'
+ PRIMARY KEY (`comment_id`)
+)
