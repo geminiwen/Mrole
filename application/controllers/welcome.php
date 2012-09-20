@@ -11,4 +11,9 @@ class Welcome extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	
+	function share()
+	{
+		$this->load->view('share');
+	}
 }
