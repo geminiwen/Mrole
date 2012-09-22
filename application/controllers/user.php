@@ -79,14 +79,25 @@ class User extends CI_Controller
 				$result['errorcode']	= 2;
 				break;
 			}
+			
+			$datefile = $username;     //在注册的同时建立自己专属的文件夹，文件名设置为用户学号
+			
+			if(!file_exists('./album./'.$datefile))
+			{
+			    mkdir('./album./'.$datefile,0777);           //文件的权限(可读，可写，可执行)并且新建文件夹
+			    @chmod ($datefile, 0777);             //进行一次文件夹mode的转换
+			}
+			
 			$result['result'] = true;
 		}while(0);
 		
-		// 应该做个注册完自动登录
+		// 应该做个注册完自动登录，不做自动登录若再按提交则会再加自己一次好友
 		
 		header("Content-Type: application/json; charset=utf-8");
 		echo json_encode($result);
 	}
+	
+	
 	
 	function request_login()	// 请求登录
 	{

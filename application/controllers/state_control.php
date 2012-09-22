@@ -50,7 +50,7 @@ class State_control extends CI_Controller
 	
 	
 	
-	function status_delete()              //删除一个状态
+	function status_delete()              //(只有在自己的状态全部显示的页面才有删除操作)删除一个状态并同时删除该状态下的所有评论
 	{
 		$login_user = $this->session->usedata('loginuser');
 		
@@ -67,15 +67,17 @@ class State_control extends CI_Controller
 			
 			$action =  $this->input->get('action');	   //删除操作
 			
-			$id = $this->input->get('id',$status_id);  //http method
+			$id = $this->input->get('id',$status_id);  //http method  所选状态序号
 			
 			$this->load->model('Status_model');
+			$this->load->model('Status_comment_model');
 			
 			if( !strcmp($action,'delete') )
 			{
 				$success = $this->Status_model->delete_status($id);
+				$success_comment = $this->Status_comment_model->delete_comment_status($id);
 				
-				if( $success == 0 )
+				if( $success == 0 && $success_comment == 0)
 				{
 					$result['result'] = false;
 					$result['errorcode'] = 9;
@@ -191,6 +193,7 @@ class State_control extends CI_Controller
 	{   
 	    $login_user = $this->session->userdata('loginuser');
 		
+
 		$result = array();
 		do
 		{
@@ -258,6 +261,47 @@ class State_control extends CI_Controller
 		echo json_encode($result);
 	}
 		
+		
+	function check_comment_num()    //统计某条状态下的评论总数
+	{
+		$login_user = $this->session->usedata('loginuser');
+		
+		$result = array();
+		do
+		{
+			if( null == $login_user )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 5;
+				$result['message'] = "用户未登录";
+				break;
+			}
+			
+			$id = $this->input->get('id',$status_id);  //http method  获取状态序号
+			
+			$this->load->model('Status_model');
+			
+			$query_result = $this->Status_model->check_comment_num_by_id($id);
+		
+		    $result_count = count( $query_result );
+		
+			header("Content-Type: application/json; charset=utf-8");
+		
+			if( $result_count > 0 )
+			{	
+			$result['result']	= true;
+			$result['count']	= $result_count;
+			}
+		    else
+		   {
+			$result['result']	= false;
+			$result['count']	= 0;
+		   }
+		}while(0);
+		
+		echo json_encode($result);
+	}
+	
 }
 
 	  

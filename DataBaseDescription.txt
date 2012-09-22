@@ -59,3 +59,26 @@ PRIMARY KEY (`status_id`)
 `comment_reply_id` int(20) NOT NULL COMMENT '回复评论对应的评论号'
  PRIMARY KEY (`comment_id`)
 )
+
+
+相册列表
+表名：album_info
+`album_name` varchar(50) NOT NULL COMMENT '相册名'
+`album_user` varchar(10) NOT NULL COMMENT '学号' 
+`build_time` datetime NOT NULL COMMENT '建立时间'
+  
+`update_time` datetime NOT NULL COMMENT '更新时间'
+  
+PRIMARY KEY (`album_name`)
+)
+
+
+照片列表
+表名：photo_info
+
+`photo_name` varchar(50) NOT NULL COMMENT '文件（照片）名'  
+`photo_album_name` varchar(50) NOT NULL COMMENT '照片所属相册名'
+`photo_user` varchar(10) NOT NULL COMMENT '学号' 
+`upload_time` date NOT NULL COMMENT '上传时间'
+PRIMARY KEY (`photo_name`)
+) 

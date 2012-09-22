@@ -102,11 +102,7 @@ class State_comment_control extends CI_Controller
 		
 		header("Content-Type: application/json; charset=utf-8");
 		echo json_encode($result);
-	}
-			
-	
-	
-	
+	}	
 	
 }
 
