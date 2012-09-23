@@ -96,7 +96,6 @@ class User extends CI_Controller
 		
 		$this->load->model("User_model");
 		
-		
 		$result = array();
 		
 		do
@@ -126,66 +125,15 @@ class User extends CI_Controller
 			}
 			
 			$this->session->set_userdata('loginuser',$query_result[0]);
-			$result['result'] = true;
-			
-			
+			$result['result'] = true;		
 			
 		}while(0);
 		header("Content-Type: application/json; charset=utf-8");
 		echo json_encode($result);
 	}
 	
-	function request_friend() //好友操作请求
+	function request_add_friend()
 	{
-		$loginsuer = $this->session->userdata('loginuser');
-		$result = array();
-		do
-		{
-			if( null == $loginuser )
-			{
-				$result['result'] = false;
-				$result['errorcode'] = 5;
-				$result['message'] = '用户未登录';
-				break;
-			}
-			
-			$s_id = $loginuser->stu_username;
-			$action =  $this->input->get('action');	// add 添加 delete 删除 （请求验证暂时放着）
-			$f_id = $this->input->get('f_id',$s_id);
-			
-			$this->load->model('User_model');
-			if( !strcmp($action,'add') )
-			{
-			
-				$success = $this->User_model->add_friend($s_id,$f_id);
-				
-				if( $success == 0 )
-				{
-					$result['result'] = false;
-					$result['errorcode'] = 6;
-					$result['message'] = '添加好友失败';
-					break;
-				}
-				
-				$result['result'] = true;
-			}
-			else( !strcmp($action,'delete') )
-			{
-				$success = $this->User_model->delete_friend($s_id,$f_id);
-				
-				if( $success == 0 )
-				{
-					$result['result'] = false;
-					$result['errorcode'] = 7;
-					$result['message'] = '添加好友失败';
-					break;
-				}
-				
-				$result['result'] = true;
-			}
-			
-		}while(0);
-		header("Content-Type: application/json; charset=utf-8");
-		echo json_encode($result);
 	}
+
 }
