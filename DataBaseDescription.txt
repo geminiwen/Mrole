@@ -82,3 +82,37 @@ PRIMARY KEY (`album_name`)
 `upload_time` date NOT NULL COMMENT '上传时间'
 PRIMARY KEY (`photo_name`)
 ) 
+
+
+
+日志列表
+表名：journal
+`journal_id` int(20) NOT NULL AUTO_INCREMENT,'日志编号'
+
+  
+`journal_title` varchar(100) NOT NULL COMMENT '日志标题'
+  
+`journal_user` varchar(10) NOT NULL COMMENT '学号'
+  
+`journal_content` varchar(2000) NOT NULL COMMENT '内容'
+  
+`journal_time` datetime NOT NULL COMMENT '发表时间'
+  
+`journal_comment_num` int(10) NOT NULL COMMENT '评论条数' 
+ PRIMARY KEY (`journal_id`)
+) 
+
+
+日志评论列表
+表名：journal_comment
+
+`journal_id` int(20) NOT NULL AUTO_INCREMENT COMMENT '序号' 
+`comment_journal_id` int(20) NOT NULL COMMENT '对应状态序号'
+`comment_user` varchar(10) NOT NULL COMMENT '学号',  
+`comment_content` varchar(500) NOT NULL COMMENT '评论内容'
+  
+`comment_time` datetime NOT NULL COMMENT '评论时间'
+  
+`comment_reply_id` int(20) NOT NULL COMMENT '回复评论对应的序号'
+ PRIMARY KEY (`journal_id`)
+) 

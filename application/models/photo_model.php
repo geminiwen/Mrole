@@ -28,6 +28,25 @@ class Photo_model extends CI_Model
 	}
 	
 	
+	
+	function add_album_headportrait_info($username,$album_name)          //将新建相册信息写入数据库
+	{
+		$this->load->database();
+		
+		date_default_timezone_set("Asia/Shanghai");  	
+		$time = date("Y-m-d H:i:s", time()) ;   
+		     
+		$this->db->insert('album_info', array('album_name'  => $album_name,
+											  'album_user'  => $username,
+											  'build_time'  => $time,
+											  'update_time' => $time
+											  ));
+		$affcted_row_num = $this->db->affected_rows();     
+		$this->db->close();
+		
+		return $affcted_row_num;
+	}
+	
 	function add_photo_info($user,$photo_name,$album_name)      //将新上传照片信息写入数据
 	{
 		$_id = $user->stu_username;

@@ -1,11 +1,10 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class State_comment_control extends CI_Controller
+class State_comment extends CI_Controller
 {
-	
 	function __construct()
 	{
-		parent::__construct();
+		parent :: __construct();
 	}
 	
 	

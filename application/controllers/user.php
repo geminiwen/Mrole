@@ -80,7 +80,7 @@ class User extends CI_Controller
 				break;
 			}
 			
-			$datefile = $username;     //在注册的同时建立自己专属的文件夹，文件名设置为用户学号
+			$datefile = $username;     //在注册的同时建立自己专属的文件夹及头像文件夹，文件名设置为用户学号
 			
 			if(!file_exists('./album./'.$datefile))
 			{
@@ -88,6 +88,14 @@ class User extends CI_Controller
 			    @chmod ($datefile, 0777);             //进行一次文件夹mode的转换
 			}
 			
+				if(!file_exists('./album./'.$datefile.'./HeadPortrait./'))           //上传到个人头像文件夹下
+			{
+			    mkdir('./album./'.$datefile.'./HeadPortrait./',0777);           //文件的权限(可读，可写，可执行)并且新建文件夹
+			    @chmod ($datefile, 0777);             //进行一次文件夹mode的转换
+			}
+			$album_name = 'HeadPortrait';
+			$this->load->model("Photo_model");
+			$query_result = $this->Photo_model->add_album_headportrait_info($username,$album_name);   //将新建相册信息写入数据库
 			$result['result'] = true;
 		}while(0);
 		
@@ -106,6 +114,7 @@ class User extends CI_Controller
 		$password = md5(md5($password)); // 两次MD5加密
 		
 		$this->load->model("User_model");
+		
 		
 		$result = array();
 		
@@ -135,17 +144,18 @@ class User extends CI_Controller
 				break;
 			}
 			
-			$this->session->set_userdata('loginuser',$query_result[0]);
-			$result['result'] = true;		
+			$this->session->set_userdata('loginuser',$query_result[0]);  //记录session
+			$result['result'] = true;
+			
+			
 			
 		}while(0);
 		header("Content-Type: application/json; charset=utf-8");
 		echo json_encode($result);
 	}
 	
-	function request_add_friend()
-	{
-	}
+	
+	
 	
 	function request_update_register()	// 请求修改注册信息
 	{
@@ -279,21 +289,17 @@ class User extends CI_Controller
 				break;
 			}
 			
-			$datefile = $login_user->stu_username;     //文件名设置为用户学号
-			
-			if(!file_exists('./'.$datefile))
-			{
-			    mkdir('./'.$datefile,0777);           //文件的权限(可读，可写，可执行)并且新建文件夹
-			    @chmod ($datefile, 0777);             //进行一次文件夹mode的转换
-			}
-			
-			    $config['upload_path'] = './'.$datefile;
+			    $datefile = $login_user->stu_username;     
+		     	$album_name = 'HeadPortrait';
+				
+			    $config['upload_path'] = './album./'.$datefile.'./HeadPortrait./';  //上传至个人头像文件夹
 		        $config['allowed_types'] = "gif|jpg|png";
 			    $config['max_size'] = '100';
                 $config['max_width']  = '1024';
                 $config['max_height']  = '768';
 				$config['overwrite'] = 'false';
 				$config ['file_name'] = $this->input->post('pic_name');   //图片自命名
+				$photo_name = $config ['file_name'];
 				$this->load->library("upload",$config);
 			
 		        $success = $this->upload->do_upload('upfile');
@@ -304,6 +310,9 @@ class User extends CI_Controller
 				$result['message'] = "头像上传失败";
 				break;
 			}
+			    $this->load->model("Photo_model");
+				$query_result = $this->Photo_model->update_album_info($login_user,$album_name);   //更新头像相册
+				$query_result = $this->Photo_model->add_photo_info($login_user,$photo_name,$album_name);   //将新上传照片信息写入数据
 		        $result['result'] = true;
 				
 		}while(0);
@@ -312,4 +321,5 @@ class User extends CI_Controller
 		echo json_encode($result);
 		
 	}
+
 }

@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Photo_upload_control extends CI_Controller
+class Photo_upload extends CI_Controller
 {
 	function __construct()
     {

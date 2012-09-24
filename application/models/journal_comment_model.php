@@ -1,13 +1,13 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Status_comment_model extends CI_Model
+class Journal_comment_model extends CI_Model
 {
 	function __construct()
 	{
 		parent :: __construct();
 	}
 	
-	function comment_update($user,$comment_status_id,$comment)		//针对状态发表新评论
+	function comment_update($user,$comment_journal_id,$comment)		//针对日志发表新评论
 	{
 		$_id = $user->stu_username;
 		
@@ -16,10 +16,10 @@ class Status_comment_model extends CI_Model
 		
 		$this->load->database();
 		
-		$this->db->insert('status_comment', array( 'comment_status_id' => $comment_status_id ,
-		     									   'comment_user' 	   => $_id ,
-												   'comment_content'   => $comment , 
-												   'comment_time'      => $time
+		$this->db->insert('journal_comment', array( 'comment_journal_id' => $comment_journal_id ,
+		     									    'comment_user' 	     => $_id ,
+												    'comment_content'    => $comment , 
+												    'comment_time'       => $time
 												 ) ); 
 		
 		$affected_row = $this->db->affected_rows();
@@ -31,7 +31,7 @@ class Status_comment_model extends CI_Model
 	
 	
 	
-	function comment_reply_update($user,$comment_status_id,$comment,$comment_reply_id)		//针对评论进行回复
+	function comment_reply_update($user,$comment_journal_id,$comment,$comment_reply_id)		//针对评论进行回复
 	{
 		$_id = $user->stu_username;
 		
@@ -40,11 +40,11 @@ class Status_comment_model extends CI_Model
 		
 		$this->load->database();
 		
-		$this->db->insert('status_comment', array( 'comment_status_id' => $comment_status_id ,
-		     									   'comment_user' 	   => $_id ,
-												   'comment_content'   => $comment , 
-												   'comment_time'      => $time ,
-												   'comment_reply_id'  => $comment_reply_id
+		$this->db->insert('journal_comment', array( 'comment_journal_id' => $comment_journal_id ,
+		     									    'comment_user' 	     => $_id ,
+												    'comment_content'    => $comment , 
+												    'comment_time'       => $time ,
+												    'comment_reply_id'   => $comment_reply_id
 												 ) ); 
 		
 		$affected_row = $this->db->affected_rows();
@@ -54,13 +54,13 @@ class Status_comment_model extends CI_Model
 		return $affected_row;
 	}
 	
-	function get_comment_by_id($id)		 //显示对应状态下的全部评论信息
+	function get_comment_by_id($id)		 //显示对应日志下的全部评论信息
 	{ 
 		$this->load->database();
 	
-		$this->db->select('status_comment.*');
-		$this->db->from('status_comment');
-		$this->db->where('status_comment.comment_status_id',$id);
+		$this->db->select('journal_comment.*');
+		$this->db->from('journal_comment');
+		$this->db->where('journal_comment.comment_journal_id',$id);
 		
 		$query = $this->db->get();
 		
@@ -73,14 +73,15 @@ class Status_comment_model extends CI_Model
 	}
 	
 	
-	function delete_comment_status($status_id)        //删除状态下所有评论
+	function delete_comment_journal($journal_id)        //删除日志下所有评论
 	{	
 		$this->load->database();
+		
 		$data = array(
-			'comment_status_id' => $status_id
+			'comment_journal_id' => $journal_id
 		);
 		
-		$this->db->delete('status_comment', $data);
+		$this->db->delete('journal_comment', $data);
 		
 		$affected_row = $this->db->affected_rows();
 		
