@@ -321,5 +321,48 @@ class User extends CI_Controller
 		echo json_encode($result);
 		
 	}
+	
+	
+	
+	function request_change_password()  //用户请求修改密码
+	{
+		$login_user = $this->session->usedata('loginuser');
+		
+		$result = array();
+		do
+		{
+			if( null == $login_user )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 5;
+				$result['message'] = "用户未登录";
+				break;
+			}
+			  
+			$password =$this->input->post('password'); 
+			$password = md5(md5($password)); // 两次MD5加密
+			
+			$this->load->model("User_model");
+			
+			$success = $this->User_model->password_change($login_user,$password);
+			
+			
+			if( $success === 0 )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 18;
+				$result['message'] = "修改密码失败";
+				break;
+			}
+			
+			$result['result'] = true;
+			
+		}while(0);
+		
+		header("Content-Type: application/json; charset=utf-8");
+		echo json_encode($result);
+		
+	}
+
 
 }

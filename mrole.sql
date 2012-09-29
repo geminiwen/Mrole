@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2012 年 09 月 24 日 10:46
+-- 生成日期: 2012 年 09 月 29 日 03:30
 -- 服务器版本: 5.1.36
 -- PHP 版本: 5.3.0
 
@@ -26,20 +26,20 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `album_info` (
+  `ID` int(20) NOT NULL AUTO_INCREMENT,
   `album_name` varchar(50) NOT NULL COMMENT '相册名',
   `album_user` varchar(10) NOT NULL COMMENT '学号',
   `build_time` datetime NOT NULL COMMENT '建立时间',
   `update_time` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`album_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `album_info`
 --
 
-INSERT INTO `album_info` (`album_name`, `album_user`, `build_time`, `update_time`) VALUES
-('HeadPortrait', '1000304217', '2012-09-24 17:15:14', '2012-09-24 17:15:14'),
-('zhaoqian', '1000304217', '2012-09-22 18:39:42', '2012-09-22 18:44:59');
+INSERT INTO `album_info` (`ID`, `album_name`, `album_user`, `build_time`, `update_time`) VALUES
+(1, 'HeadPortrait', '1000304217', '2012-09-28 22:14:44', '2012-09-28 22:14:44');
 
 -- --------------------------------------------------------
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `friend` (
   `friend_id` varchar(10) NOT NULL COMMENT '好友学号',
   `type` int(2) NOT NULL COMMENT '是好友或者关注者',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- 转存表中的数据 `friend`
@@ -71,7 +71,13 @@ INSERT INTO `friend` (`ID`, `user_id`, `friend_id`, `type`) VALUES
 (19, '1000304217', '1000304217', 0),
 (17, '1000304217', '0900301214', 1),
 (18, '0900301214', '0900301214', 0),
-(28, '1000304217', '1000304217', 0);
+(28, '1000304217', '1000304217', 0),
+(29, '1000304217', '1000304217', 0),
+(30, '1000304217', '1000304217', 0),
+(31, '1000304217', '1000304217', 0),
+(32, '1000304217', '1000304217', 0),
+(33, '1000304217', '1000304217', 0),
+(34, '1000304217', '1000304217', 0);
 
 -- --------------------------------------------------------
 
@@ -119,6 +125,31 @@ CREATE TABLE IF NOT EXISTS `journal_comment` (
 -- 转存表中的数据 `journal_comment`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `keyword_info`
+--
+
+CREATE TABLE IF NOT EXISTS `keyword_info` (
+  `ID` int(20) NOT NULL AUTO_INCREMENT,
+  `keyword` varchar(50) NOT NULL COMMENT '个人关键词',
+  `keyword_user` varchar(10) NOT NULL COMMENT '学号',
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- 转存表中的数据 `keyword_info`
+--
+
+INSERT INTO `keyword_info` (`ID`, `keyword`, `keyword_user`) VALUES
+(1, '吃货', '1000304217'),
+(2, '爱狗', '1000304217'),
+(3, '减肥', '1000304217'),
+(4, '旅游', '1000304217'),
+(5, '写作', '1000304217'),
+(6, '看电影', '1000304217');
 
 -- --------------------------------------------------------
 
@@ -220,4 +251,4 @@ CREATE TABLE IF NOT EXISTS `stu_info` (
 
 INSERT INTO `stu_info` (`stu_username`, `stu_realname`, `stu_password`, `stu_job`, `stu_birthday`, `stu_email`, `stu_sex`, `stu_sex2`, `stu_constellation`, `stu_school`, `stu_college`, `stu_class`, `stu_tel`, `stu_question`, `stu_answer`, `stu_checked`) VALUES
 ('0900301214', '温盛章', '14e1b600b1fd579f47433b88e8d85291', '学生会', '1992-09-06', '1234@qq.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, b'1'),
-('1000304217', '赵倩', 'ec6a6536ca304edf844d1d248a4f08dc', '团支书', '1991-12-07', '453255811@qq.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, b'1');
+('1000304217', '赵倩', '1f32aa4c9a1d2ea010adcf2348166a04', '班长', '2012-09-19', '453255811@qq.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, b'0');

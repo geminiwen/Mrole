@@ -1,5 +1,6 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+header("Content-Type:text/html;charset=utf-8");
 class State_comment extends CI_Controller
 {
 	function __construct()

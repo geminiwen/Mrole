@@ -224,7 +224,7 @@ class Journal extends CI_Controller
 	}
 	
 	
-	function journal_keyword_search()              //搜索关键字状态
+	function journal_keyword_search()              //搜索关键字日志
 	{
 		$login_user = $this->session->usedata('loginuser');
 		

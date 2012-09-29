@@ -63,6 +63,7 @@ PRIMARY KEY (`status_id`)
 
 相册列表
 表名：album_info
+`ID` int(20) NOT NULL AUTO_INCREMENT COMMENT '序号'
 `album_name` varchar(50) NOT NULL COMMENT '相册名'
 `album_user` varchar(10) NOT NULL COMMENT '学号' 
 `build_time` datetime NOT NULL COMMENT '建立时间'
@@ -115,4 +116,13 @@ PRIMARY KEY (`photo_name`)
   
 `comment_reply_id` int(20) NOT NULL COMMENT '回复评论对应的序号'
  PRIMARY KEY (`journal_id`)
+) 
+
+
+关键词列表
+表名：keyword_info
+`ID` int(20) NOT NULL AUTO_INCREMENT COMMENT '序号'
+`keyword` varchar(50) NOT NULL COMMENT '个人关键词' 
+`keyword_user` varchar(10) NOT NULL COMMENT '学号'
+PRIMARY KEY (`keyword`)
 ) 
