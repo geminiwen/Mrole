@@ -7,6 +7,7 @@ class User extends CI_Controller
     {
         // Call the Model constructor
         parent::__construct();
+		session_start();
     }
 	
 	function check_stunum()	// 检查用户名
@@ -14,12 +15,10 @@ class User extends CI_Controller
 		$stu_num = $this->input->post('username');
 		$this->load->model("User_model");
 		
-		$query_result = $this->User_model->query_by_username($stu_num);
+		$query_result = $this->User_model->query_by_username($stu_num, true);
 		
 		$result_count = count( $query_result );
 		$result = array();
-		
-		header("Content-Type: application/json; charset=utf-8");
 		
 		if( $result_count > 0 )
 		{	
@@ -31,7 +30,7 @@ class User extends CI_Controller
 			$result['result']	= false;
 			
 		}
-		
+		header("Content-Type: application/json; charset=utf-8");
 		echo json_encode($result);
 	}
 	
@@ -82,16 +81,18 @@ class User extends CI_Controller
 			
 			$datefile = $username;     //在注册的同时建立自己专属的文件夹及头像文件夹，文件名设置为用户学号
 			
-			if(!file_exists('./album./'.$datefile))
+			if(!file_exists('./album/'.$username))
 			{
-			    mkdir('./album./'.$datefile,0777);           //文件的权限(可读，可写，可执行)并且新建文件夹
-			    @chmod ($datefile, 0777);             //进行一次文件夹mode的转换
+				$datefile = './album/'.$username;
+			    mkdir($datefile,0775);           //文件的权限(可读，可写，可执行)并且新建文件夹
+			    @chmod ($datefile, 0775);             //进行一次文件夹mode的转换
 			}
 			
-				if(!file_exists('./album./'.$datefile.'./HeadPortrait./'))           //上传到个人头像文件夹下
+			if(!file_exists($datefile.'/HeadPortrait/'))           //上传到个人头像文件夹下
 			{
-			    mkdir('./album./'.$datefile.'./HeadPortrait./',0777);           //文件的权限(可读，可写，可执行)并且新建文件夹
-			    @chmod ($datefile, 0777);             //进行一次文件夹mode的转换
+				$datefile .= '/HeadPortrait/';
+			    mkdir($datefile,0777);           //文件的权限(可读，可写，可执行)并且新建文件夹
+			    @chmod ($datefile, 0775);             //进行一次文件夹mode的转换
 			}
 			$album_name = 'HeadPortrait';
 			$this->load->model("Photo_model");
@@ -120,7 +121,7 @@ class User extends CI_Controller
 		
 		do
 		{
-			$query_result = $this->User_model->query_by_username($username);
+			$query_result = $this->User_model->query_by_username($username,false);
 		
 			$result_count = count( $query_result );
 			
@@ -143,8 +144,7 @@ class User extends CI_Controller
 				$result['message'] = '密码错误';
 				break;
 			}
-			
-			$this->session->set_userdata('loginuser',$query_result[0]);  //记录session
+			$_SESSION['loginsuer'] = $query_result[0];  //记录session
 			$result['result'] = true;
 			
 			

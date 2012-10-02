@@ -8,11 +8,11 @@ class User_model extends CI_Model
 	}
 	
 	
-	function query_by_username($num)                //检查用户名
+	function query_by_username($num,$is_register)                //检查用户名
 	{
 		$this->load->database();
 		$this->db->where("stu_username",$num);
-		$this->db->where("stu_checked",0);
+		$this->db->where("stu_checked", $is_register === true ? 0 : 1);
 		$query = $this->db->get("stu_info");
 		$result	= $query->result();
 		$query->free_result();            //释放当前查询所占用的内存并删除其关联的资源标识

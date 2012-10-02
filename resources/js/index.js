@@ -161,9 +161,33 @@ $(document).ready(function()
 	
 	var loginSubmitBtnClick = function()
 	{
-		var username = $('#login_username').val();
-		var password = $('#login_password').val();
+		var login_obj = {
+			'username': $('#login_username').val(),
+			'password': $('#login_password').val()
+		};
 		
+		$.ajax({
+			url: 'user/request_login',
+			dataType: 'json',
+			type: 'POST',
+			data: login_obj,
+			success: function( data )
+				{
+					var result = data['result'];
+					if( result )
+					{
+						alert('登陆成功');
+					}
+					else
+					{
+						alert(data['message']);
+					}
+				},
+			error: function(jqXHR, textStatus, errorThrown)
+				{
+					alert('服务器错误');
+				}
+		});
 	}
 	
 	
@@ -301,6 +325,8 @@ $(document).ready(function()
 				.attr('src','resources/img/right_arrow_disabled.png');
 		}
 	});
+	
+	$('#login_btn').click(loginSubmitBtnClick);
 	
 	
 	$('#captcha').click(function()

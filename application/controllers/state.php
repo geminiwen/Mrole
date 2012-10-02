@@ -1,14 +1,20 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-header("Content-Type:text/html;charset=utf-8");
+
 class State extends CI_Controller
 {
 	
 	function __construct()
 	{
 		parent::__construct();
+		session_start();
 	}
 
+	function index()
+	{
+		return $this->load->view('person');
+	}
+	
 	
 	function status_update()              //发布一条状态
 	{
@@ -129,8 +135,7 @@ class State extends CI_Controller
 		
 	function state_self_public_time_line()      //获取个人全部状态信息
 	{
-		$login_user = $this->session->userdata('loginuser');
-		
+		$login_user = $_SESSION['loginsuer'];
 		$result = array();
 		do
 		{

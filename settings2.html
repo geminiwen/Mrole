@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/settings.css" rel="stylesheet" type="text/css" />
+<script src="resources/js/jquery-min.js" type="text/javascript"></script>
+
+<script src="resources/js/settings.js" type="text/javascript"></script>
+
+<script src="resources/js/audio.min.js" type="text/javascript"></script>
+<title>设置</title>
+</head>
+<script type="text/javascript">
+  audiojs.events.ready(function() {
+	  var audios = document.getElementsByTagName('audio');
+	  audiojs.create(audios[0], {
+		  css: false,
+		  createPlayer: {
+			  markup: false,
+			  playPauseClass: 'media_playpause',
+			  playedClass:'hidden',
+			  scrubberClass: 'hidden',
+              progressClass: 'hidden',
+           	  loaderClass: 'hidden',
+              timeClass: 'hidden',
+              durationClass: 'hidden',
+              errorMessageClass: 'hidden',
+              playingClass: 'playingZ',
+              loadingClass: 'hidden',
+              errorClass: 'hidden'
+		  }
+	  });
+  });
+  
+$(document).ready(function()
+{
+	$('#sb').click(sbClick);
+}
+);
+ var sbClick = function()
+	{
+		var data =
+		{
+			'realname': $('#realname').val(),
+			'year': $('#year').val(),
+			'month': $('#month').val(),
+			'day': $('#day').val(),
+			'sb1': $('#sb1').val(),
+			'sb2': $('#sb2').val(),
+			'sb3': $('#sb3').val(),
+			'sb4': $('#sb4').val(),
+			'sb5': $('#sb5').val(),
+			'sb6': $('#sb6').val(),
+			'sb11': $('#sb11').val(),
+			'sb12': $('#sb12').val(),
+			'sb13': $('#sb13').val(),
+			'sb14': $('#sb14').val(),
+			'sb15': $('#sb15').val(),
+			'sb16': $('#sb16').val()
+		}
+		
+		$.ajax({
+			url: 'settings/theend',
+			dataType:'json',
+			data: data,
+			type: 'POST',
+			success: function( data )
+					{
+						var result = data['result'];
+						if( result )
+						{
+							alert('保存成功！');
+						}
+						else
+						{
+							alert(data['message']);
+						}
+					},
+			error: function(jqXHR, textStatus, errorThrown)
+				{
+					alert(textStatus);
+				}
+		});
+	};
+</script>
+<body>
+	<div class="head">
+		<div class="logo"></div>
+        <div class="nav">
+        	<div class="nav_header">
+            	<div class="media_player">
+        		<audio src="resources/media/qiuniao.mp3" preload="auto" ></audio>
+            	<div class="media_logo"></div>
+                <div class="media_title"> 囚鸟</div>
+                <div class="media_playpause">
+                	<p class="playZ"></p>
+                    <p class="pauseZ"></p>
+                    <p class="loadingZ"></p>
+                    <p class="errorZ"></p>
+                	<p class="hidden"></p>
+                </div>
+                <div class="clear"></div>
+                </div>
+                <div class="navigator">
+                	<ul>
+                    <li class="nav_on">脉络</li>
+                    <li class="nav_off">脉铺</li>
+                    <li class="nav_off">生活</li>
+                    <li class="nav_off">校园</li>
+                    <li class="nav_off">资源</li>
+                    <li class="nav_off">设置</li>
+                    <li class="clear"></li>
+                    </ul>
+                </div>
+                <div class="searchBox">
+                	
+                	<input type="text" id="searchInput" placeholder="搜索人/信息" name="search" x-webkit-speech lang="zh-CN"/>
+                    <div class="searchBtn">&nbsp;</div>				
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="nav2">
+                <ul>
+                <li class="selected firstTab" > 重要信息 </li>
+                <li class="secondTab" > 扩展信息 </li>
+                <li class="thirdTab"  > 定制信息 </li>
+                </ul>
+        	</div>
+        </div>
+        
+        <div class="clear"></div>
+    </div>
+    
+    <div class="body">
+    	<div class="importContent selectedTab">
+        	<div style="font-family:inherit;color:#fff;font-size:25px">必填信息且所有人可见（邮箱、手机、密保问题除外）。</div>
+            <div class="headImg">
+            	<img width="161" height="161" src="resources/img/photo_img_default.jpg" style="float:left;"/>
+                <div class="headImgInfo">
+                	<div style="margin:15px 0 0 15px;font-size:20px;color:#fff">头像</div>
+                    <div class="headImgBtn">现&nbsp;在&nbsp;上&nbsp;传</div>
+                    <div class="headImgBtn">选&nbsp;择&nbsp;相&nbsp;册</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="nameInfo">
+                <div class="name_sex">
+                	<div style="float:left">
+                	姓名
+                    <div style="margin-top:20px;">
+                    <input type="text" name="realname" id='realname' style="border:none;height: 33px;line-height:33px;padding-left:5px;font-size:25px;width:158px"/>
+                    </div>
+                    </div>
+                    <div style="margin-left:41px;float:left;">
+                    	性别
+                        <div class="sexSelect">
+                        	<div class="boySelect"></div><div class="girlUnselected"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="birthDay">
+                	<div style="line-height:inherit;height:inherit;float:left;margin-right:13px;">
+            		生日
+                    </div>
+                    <input type="text" name="year"
+                    />
+                    <input type="text" name="month"
+                    />
+                    <input type="text" name="day"
+                    />
+                    
+            	</div>
+            </div>
+            <div class="sexOri">
+            	性向
+               	<div class="sexSelect">
+                <div class="boySelect"></div>
+                <div class="girlUnselected"></div>
+                </div>
+                <div class="constell">
+                星座
+                </div>
+                <div class="constellSelect">
+                	双子座
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="detailInfo">
+            	<div class="detailInput">
+                	<div class="detailIntro">
+                    	学校
+                    </div>
+                    <input type="text" name="school" />
+                </div>
+                
+                <div class="detailInput nextInput">
+                	<div class="detailIntro">
+                    	学院
+                    </div>
+                    <input type="text" name="school" />
+                </div>
+                
+                <div class="detailInput nextInput">
+                	<div class="detailIntro">
+                    	班级
+                    </div>
+                    <input type="text" name="school" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="detailInfo">
+            	<div class="detailInput">
+                	<div class="detailIntro">
+                    	职位
+                    </div>
+                    <input type="text" name="school" />
+                </div>
+                
+                <div class="detailInput nextInput">
+                	<div class="detailIntro">
+                    	邮箱
+                    </div>
+                    <input type="text" name="school" />
+                </div>
+                
+                
+                <div class="detailInput nextInput">
+                	<div class="detailIntro">
+                    	手机
+                    </div>
+                    <input type="text" name="school" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="secretAnswer">
+            	<div class="keyAnswer">
+                	<table cellpadding="0" cellspacing="0">
+                    <tr>
+                    <td class="title">密保问题</td>
+                    <td class="titleInput"><input type="text" name="" /></td>
+                    <td class="title">密保答案</td>
+                    <td class="titleInput"><input type="text" name="" /></td>
+                    </tr>
+                    <tr>
+                    <td class="title"></td>
+                    <td class="titleInput"><input type="text" name="" /></td>
+                    <td class="title"></td>
+                    <td class="titleInput"><input type="text" name="" /></td>
+                    </tr>
+                    <tr>
+                    <td class="title"></td>
+                    <td class="titleInput"><input type="text" name="" /></td>
+                    <td class="title"></td>
+                    <td class="titleInput"><input type="text" name="" /></td>
+                    </tr>
+                    </table>
+                </div>
+                <div class="repasswordBtns">
+                <button > 修改密码</button>
+                <button style="margin-top:10px;" id="sb"> 保存设置</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+            
+           
+        </div>
+        <div class="extendContent">
+        	<div style="font-family:inherit;color:#fff;font-size:25px">
+        选填信息，你的关键字，越详细就有越多人找到你。
+       		</div>
+            <div class="extendBody">
+            	<fieldset title="关键词选择" class="keywordsChoice" >
+                	<legend>关键词选择</legend>
+                    <input type="text" name="keywords" />
+                    <hr style="height:5px;background-color:#fff; border:none; margin-bottom:0px"/>
+                    <div style="width:100%">
+                    	<table cellpadding="0" cellspacing="0">
+                        <tr>
+                        <td class="select">随机推荐</td>
+                        <td>热门标签</td>
+                        </tr>
+                        </table>
+                    </div>
+                    <div style="padding: 5px;background-color:#ACDA22;">
+                    <div class="keywordBox" id="keywordBox1">
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>
+                    <div>test</div>                    
+                    </div>
+                    <div class="keywordBox" style="display:none" id="keywordBox2" >
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>
+                    <div>123</div>           
+                    </div>
+                    </div>
+                </fieldset>
+                <div class="keywordBtns">
+                	<button style="margin-top:170px;">生成标签</button>
+                    <button style="margin-top:50px;">清除标签</button>
+                </div>
+                <fieldset class="myKeyword">
+                	<legend style="text-align:right">我的关键字</legend>
+                    <div class="myKeywordBox">
+                        	<div>test</div>
+                    </div>
+                </fieldset>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="customContent">
+        	<img src="resources/img/comming_soon.png" style="margin: 80px auto;"/>
+        </div>
+    </div>
+    
+    <div class="tail">
+     Copyright 2012 Mrole. All Rights Reserved.
+     <br/>
+     脉络版权所有
+    </div>
+</body>
+</html>
