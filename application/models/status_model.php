@@ -96,9 +96,11 @@ class Status_model extends CI_Model
 	{ 
 	    $_id = $user->stu_username;
 		$this->load->database();
-	
-		$this->db->where('status_user',$_id);	
-		$query = $this->db->get('status');
+		$this->db->select('*');
+		$this->db->where('status_user',$_id);
+		$this->db->from('status');
+		$this->db->join('stu_info','stu_info.stu_username = status.status_user','inner');
+		$query = $this->db->get();
 		
 		$result_array = $query->result();
 		$query->free_result();

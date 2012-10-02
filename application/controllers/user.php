@@ -144,7 +144,7 @@ class User extends CI_Controller
 				$result['message'] = '密码错误';
 				break;
 			}
-			$_SESSION['loginsuer'] = $query_result[0];  //记录session
+			$_SESSION['loginuser'] = $query_result[0];  //记录session
 			$result['result'] = true;
 			
 			

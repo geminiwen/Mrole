@@ -135,18 +135,18 @@ class State extends CI_Controller
 		
 	function state_self_public_time_line()      //获取个人全部状态信息
 	{
-		$login_user = $_SESSION['loginsuer'];
+		
 		$result = array();
 		do
 		{
-			if( null == $login_user )
+			if( !isset($_SESSION['loginuser']) )
 			{
 				$result['result'] = false;
 				$result['errorcode'] = 5;
 				$result['message'] = "用户未登录";
 				break;
 			}
-			
+			$login_user = $_SESSION['loginuser'];
 			$this->load->model('Status_model');
 			
 			$data = $this->Status_model->get_time_line_by_id($login_user);
