@@ -50,11 +50,15 @@ class Status_model extends CI_Model
 		
 		$this->load->database();
 		
-		$this->db->select('status.*,friend.*');
-		$this->db->from('status,friend');      
+		$this->db->select('status.*,stu_info.*,photo_info.photo_url');
+		$this->db->from('status,friend,stu_info');      
+		$this->db->join('photo_info','photo_info.photo_id = stu_info.stu_photo','left');
 		$this->db->where('friend.user_id',$_id); 
-		$this->db->where('friend.type',1);           //type = 1为关注，type = 0为好友       
+		//$this->db->where('friend.type',1);           //type = 1为关注，type = 0为好友       
 		$this->db->where('status.status_user = friend.friend_id');
+		$this->db->where('stu_info.stu_username = friend.friend_id');
+		$this->db->order_by('status.status_time','desc');
+		
 		
 		$query = $this->db->get();
 		
@@ -77,7 +81,7 @@ class Status_model extends CI_Model
 		$this->db->select('status.*,friend.*');
 		$this->db->from('status,friend');      
 		$this->db->where('friend.user_id',$_id); 
-		$this->db->where('friend.type',1);           //type = 1为关注，type = 0为好友       
+		$this->db->where('friend.type',0);           //type = 1为关注，type = 0为好友       
 		$this->db->where('status.status_user = friend.friend_id');
 		
 		$query = $this->db->get();

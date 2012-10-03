@@ -166,19 +166,19 @@ class State extends CI_Controller
 				
 	function state_public_time_line()    // 获取登录用户关注的公共状态信息
 	{   
-	    $login_user = $this->session->userdata('loginuser');
-		
+	    
 		$result = array();
 		do
 		{
-			if( null == $login_user )
+			if( !isset($_SESSION['loginuser']) )
 			{
 				$result['result'] = false;
 				$result['errorcode'] = 5;
 				$result['message'] = "用户未登录";
 				break;
 			}
-			
+			$login_user = $_SESSION['loginuser'];
+		
 			$this->load->model('Status_model');
 			
 			$data = $this->Status_model->get_status_time_line($login_user);  

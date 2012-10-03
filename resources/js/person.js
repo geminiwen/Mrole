@@ -10,7 +10,7 @@
 		startLoadStatus: function ( self )	// 开始加载status数据
 				{
 					$.ajax({
-						url: '/state/state_self_public_time_line',
+						url: '/state/state_public_time_line',
 						type: 'get',
 						dataType:'json',
 						success: function( data )
@@ -40,13 +40,19 @@
 						timeNode.text(data[i]['status_time']);
 						var sourceNode = domNode.find('.feedSource').find('a');
 						sourceNode.text('测试设备');
+						var img		= domNode.find('img');
+						if( data[i]['photo_url'] != null )
+						{
+							img.attr('src',data[i]['photo_url']);
+						}
+						else
+						{
+							img.attr('src','resources/img/user/1.jpg');
+						}
 						domNode.appendTo('.statusWrapper');
+						
 					}
 					
-				},
-		self: this,
-		init: function ( self )  //初始化函数
-				{
 					$(".statusInfoBox ul li").hover(function()
 					{
 						$(this).children('ul').slideDown();
@@ -55,6 +61,12 @@
 					{
 						$(this).children('ul').slideUp();
 					});
+					
+				},
+		self: this,
+		init: function ( self )  //初始化函数
+				{
+					
 					
 					$('.feedComment').click(function()
 					{

@@ -176,7 +176,7 @@ $(document).ready(function()
 					var result = data['result'];
 					if( result )
 					{
-						alert('登陆成功');
+						window.location="/state";
 					}
 					else
 					{
