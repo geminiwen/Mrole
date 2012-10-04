@@ -150,8 +150,9 @@ class User extends CI_Controller
 			
 			
 		}while(0);
-		header("Content-Type: application/json; charset=utf-8");
-		echo json_encode($result);
+		$this->output
+		->set_content_type('application/json')
+		->set_output(json_encode($result));
 	}
 	
 	

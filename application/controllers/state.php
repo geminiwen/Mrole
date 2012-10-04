@@ -189,13 +189,14 @@ class State extends CI_Controller
 			
 		}while(0);
 		
-		header("Content-Type: application/json; charset=utf-8");
-		echo json_encode($result);
+		$this->output
+		->set_content_type('application/json; charset=utf-8'')
+		->set_output(json_encode($result));
 	}
 		
 		
 		
-		function state_friend_time_line()    // 获取好友状态信息
+	function state_friend_time_line()    // 获取好友状态信息
 	{   
 	    $login_user = $this->session->userdata('loginuser');
 		
@@ -307,6 +308,64 @@ class State extends CI_Controller
 		}while(0);
 		
 		echo json_encode($result);
+	}
+	
+	function comment_time_line()      //显示对应状态下的全部评论信息
+	{
+		$result = array();
+		do
+		{
+			if( !isset($_SESSION['loginuser']) )
+			{
+				$result['result'] = false;
+				$result['errorcode'] = 5;
+				$result['message'] = "用户未登录";
+				break;
+			}
+			
+			$login_user = $_SESSION['loginuser'];
+			
+			$comment_status_id = $this->input->get('comment_status_id',TRUE);   //http method
+			
+			$this->load->model('Status_comment_model');
+			
+			$data = $this->Status_comment_model->get_comment_by_id($comment_status_id);
+			
+			$response_data = array();
+			
+			foreach( $data as $d )
+			{
+				$p_data = array();
+				
+				$p_data['stu_username'] = $d->stu_username;
+				$p_data['photo_url']	= $d->photo_url;
+				$p_data['stu_realname'] = $d->stu_realname;
+				$p_data['comment_id']	= $d->comment_id;
+				$p_data['comment_content'] = $d->comment_content;
+				$p_data['comment_time']	= $d->comment_time;
+				$p_data['is_reply'] = !strcmp($d->comment_user,$d->status_user);
+				array_push($response_data,$p_data);
+			}
+			
+			$result['result'] = true;
+			$result['data'] = $response_data;
+			
+			
+		}while(0);
+		
+		$this->output
+		->set_content_type('application/json ;charset=utf-8'')
+		->set_output(json_encode($result));
+	}	
+	
+	function get_default($attr,$def)
+	{
+		$result = $this->input->get($attr,TRUE);
+		if( $result === false )
+		{
+			$result = $def;
+		}
+		return $result;
 	}
 	
 }
