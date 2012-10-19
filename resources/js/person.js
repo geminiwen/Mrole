@@ -1,4 +1,25 @@
 ﻿// JavaScript Document
+
+function HTMLEncode(input){
+	var converter = document.createElement("div");
+	if(converter.getAttribute("innerText")!=null){
+		converter.innerText=input;
+	}else{
+		converter.textContent=input;
+	}
+	var output = converter.innerHTML;
+	converter = null;
+	return output;
+}
+
+function HTMLDecode(input){
+	var converter = document.createElement("div");
+	converter.innerHTML = input;
+	var output = (converter.getAttribute('innerText')!=null)?converter.innerText:converter.textContent;
+	converter = null;
+	return output;
+}
+
 (function( window,undefined )
 {
 	var PersonPage = function ()
@@ -180,8 +201,9 @@
 		startReplyStatusComment: function ( self, elem )
 				{
 					var data = {
-						'comment_content': elem.find('.commentTextInput').html()
+						'comment_content': elem.find('.commentTextInput').text()
 					};
+					elem.find('.commentTextInput').text('');
 					var url = '/state_comment/status_comment_update?status_id='+elem.find('.statusId').val();
 					var comment_id = elem.find('.replyId').val();
 					if( comment_id != "" )
@@ -196,7 +218,15 @@
 						data: data,
 						success: function ( data )
 								{
-									alert('ok');
+									var result = data['result'];
+									if( result )
+									{
+										self.finishReplyStatusComment(self, data, elem);
+									}
+									else
+									{
+										alert('发表评论失败');
+									}
 								},
 						error: function ()
 								{
@@ -204,6 +234,11 @@
 								}
 					});
 					
+				},
+		finishReplyStatusComment: function( self, data, elem )
+				{
+					elem.find(".commentContentDl").empty();
+					self.startLoadComments( self, elem );
 				},
 		deleteMyComment: function ( self, elem, rootElem )
 				{
@@ -291,10 +326,10 @@
 					self._commentHtml = 
 					{
 						'me': function() {
-								return $('<dd class="Clearfix"> \
+								return $('<dd class="Clearfix commentDetail"> \
 								<input type="hidden" class="commentId" value=""/> \
 							   <img class="PL10 FR statusImg photo" src="" width="50" height="50"  /> \
-							   <p class="FR" style="margin:0px">\
+							   <p class="FR" style="margin:0px;max-width:750px;">\
 										<a title="" href="" usercard=""></a> \
 										<em></em> \
 							   </p> \
@@ -302,10 +337,10 @@
 							   </dd>');
 							},	
 						'you': function() {
-								return $('<dt class="Clearfix">\
+								return $('<dt class="Clearfix commentDetail">\
 								<input type="hidden" class="commentId" value=""/> \
 								<img class="FL PR10 statusImg photo" src="resources/img/user/1.jpg" width="50" height="50"  /> \
-									<p class="FL" style="margin:0px">\
+									<p class="FL" style="margin:0px;max-width:750px;">\
 										<a title="" href="" usercard=""></a> \
 										<em></em> \
 									</p> \

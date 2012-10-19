@@ -3,11 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>个人中心</title>
-<link href="/resources/css/person.css" type="text/css" rel="stylesheet" />
+<link href="resources/css/frame.css" type="text/css" rel="stylesheet" />
+<link href="resources/css/person.css" type="text/css" rel="stylesheet" />
 
-<script src="/resources/js/jquery-min.js" type="text/javascript"></script>
-<script src="/resources/js/audio.min.js" type="text/javascript"></script>
-<script src="/resources/js/person.js" type="text/javascript"></script>
+<script src="resources/js/jquery-min.js" type="text/javascript"></script>
+<script src="resources/js/audio.min.js" type="text/javascript"></script>
+<script src="resources/js/person.js" type="text/javascript"></script>
 <script type="text/javascript">
   audiojs.events.ready(function() {
 	  var audios = document.getElementsByTagName('audio');
@@ -29,6 +30,12 @@
 		  }
 	  });
   });
+  
+  // JavaScript Document
+$(document).ready(function()
+{
+	$('.feedComment').click( function () { $(".commentContent").slideToggle("slow");$(".feedCommentBot").slideToggle("slow"); });
+});
 </script>
 
 </head>
@@ -40,7 +47,7 @@
         <div class="nav">
         	<div class="nav_header">
             	<div class="media_player">
-        		<audio src="/resources/media/qiuniao.mp3" preload="auto" ></audio>
+        		<audio src="resources/media/qiuniao.mp3" preload="auto" ></audio>
             	<div class="media_logo"></div>
                 <div class="media_title">
                 <ul>
@@ -94,11 +101,11 @@
         </div>
         <dl class="statusWrapper">
         	
- <!--       	<dd class="statusContent">
+        	<dd class="statusContent">
             	<div class="statusInfoBox">
                     <ul>
                     	<li>
-                    	<img src="/resources/img/user/1.jpg" width="60" height="60" class="statusImg"/>
+                    	<img src="resources/img/user/1.jpg" width="60" height="60" class="statusImg"/>
                         <ul>
                         	<li class="statusFriend" >友</li>
                             <li class="statusFans"   >粉</li>
@@ -114,7 +121,9 @@
                     </p>
                     <div class="feedInfo">
                     <span style="clear:both">
-                    	<span class="feedComment">评论</span>
+                    	<span class="feedComment">评论
+                        <b class="feedCommentBot">&nbsp;</b>
+                        </span>
                         <span class="feedShare">分享</span>
                     </span>
                     <span class="feedTime">
@@ -126,11 +135,32 @@
                     </div>
                 </div>
                 <div class="clear"></div>
-                <div class="commentContent slides">
-                    	test
-                </div>
+				<div class="commentContent">
+				 <div class="commentInputBox">
+						<div class="textareaInput" contenteditable="true" ></div>
+						<div>
+							<button style="float:right;margin-bottom: 5px;" >回复</button>
+							<div class="clear"></div>
+						</div>
+				 </div>
+                 <dl class="commentContentDl" style="margin:0px">
+                   <dt class="Clearfix">
+                    <img class="FL PR10 statusImg" src="resources/img/user/1.jpg" width="50" height="50"  />
+                   <p class="W400 FL">
+					<a ></a>
+					<em></em>
+				   </p>
+                    <img class="PL10 statusImg" src="resources/img/commentContQue.gif" width="50" height="50"  />
+                   </dt>
+                   <dd class="Clearfix">
+                   <img class="PL10 FR statusImg" src="resources/img/user/1.jpg" width="50" height="50"  />
+                   <p class="W400 FR">aasdasdasdasd阿盛大盛大大赛阿盛大盛大大赛阿盛大盛大大赛阿盛大盛大大赛阿盛大盛大大赛阿盛大盛大大赛阿盛大盛大大赛</p>
+                   <img class="PR10 FR statusImg" src="resources/img/commentContAns.gif" width="50" height="50" />
+                   </dd>
+                 </dl>
+				</div>
             </dd>
-       -->     
+            <hr style="margin:0 10px;" />
             
         </dl>
         <div class="clear"></div>

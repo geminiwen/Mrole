@@ -190,7 +190,7 @@ class State extends CI_Controller
 		}while(0);
 		
 		$this->output
-		->set_content_type('application/json; charset=utf-8'')
+		->set_content_type('application/json')
 		->set_output(json_encode($result));
 	}
 		
@@ -354,7 +354,7 @@ class State extends CI_Controller
 		}while(0);
 		
 		$this->output
-		->set_content_type('application/json ;charset=utf-8'')
+		->set_content_type('application/json')
 		->set_output(json_encode($result));
 	}	
 	
